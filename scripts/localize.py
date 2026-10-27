@@ -18,7 +18,9 @@ class Parser(HTMLParser):
    if k in ['src','href'] and v and v.startswith(('./assets/','./images/','./site.webmanifest','./robots','/images/','/site.webmanifest')):a[k]=root+v.removeprefix('./').lstrip('/')
   if tag=='option' and a.get('value')=='':a.pop('value');a['data-stable-option']='true'
   out.append('<'+tag+''.join(' '+k+('="'+html.escape(v,quote=True)+'"' if v is not None else '') for k,v in a.items())+'>')
- def handle_startendtag(self,t,a):self.handle_starttag(t,a)
+ def handle_startendtag(self,t,a):
+  self.handle_starttag(t,a)
+  out[-1]=out[-1][:-1]+'/>'
  def handle_endtag(self,t):
   if t in ['script','style']:self.skip-=1
   out.append('</'+t+'>')

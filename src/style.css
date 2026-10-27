@@ -233,3 +233,6 @@ html:not(.js) .reveal{opacity:1;transform:none}html:not(.js) .hero-sequence{heig
 .footer-top{flex-wrap:wrap;gap:24px}
 @supports(animation-timeline:view()){.real-journeys{animation:space-unfold linear both;animation-timeline:view();animation-range:entry 0% entry 85%}}
 .gallery-enhanced .journey-card{border-radius:50% / 3%;overflow:hidden}.gallery-enhanced .base-photo{opacity:1}.gallery-enhanced .journey-card:after{content:'';position:absolute;inset:0;background:linear-gradient(90deg,#0002,transparent 17%,transparent 83%,#0002);pointer-events:none}
+/* Airport transfers use the supplied real airport photo, distinct from the city tour card. */
+.airport-art{background-image:linear-gradient(0deg,#13211466,transparent),url('/images/journeys/journey-02.webp');background-size:cover;background-position:center 42%}
+.airport-art svg{display:none}
