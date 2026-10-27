@@ -1,7 +1,9 @@
 import {test,expect} from '@playwright/test';
 test('animated header logo leads to the envelope planner and a transfer enquiry',async({page})=>{
  await page.goto('/?lang=en',{waitUntil:'domcontentloaded'});
- await expect(page.locator('#header-branding')).toBeVisible();
+ await expect(page.locator('#brand-opening')).toBeVisible();
+ await page.locator('#opening-skip').click();
+ await page.locator('#replay-welcome').click();
  await expect(page.locator('#brand-intro')).toHaveCount(0);
  await expect(page.locator('#welcome-booking')).toBeVisible({timeout:11000});
  await page.locator('#welcome-from').fill('KLIA Terminal 1');
@@ -23,6 +25,7 @@ test('animated header logo leads to the envelope planner and a transfer enquiry'
 test('mobile hourly planner can close, stay dismissed and replay',async({page})=>{
  await page.setViewportSize({width:390,height:844});await page.emulateMedia({reducedMotion:'reduce'});
  await page.goto('/?lang=zh');
+ await page.locator('#replay-welcome').click();
  await expect(page.locator('#welcome-booking')).toBeVisible();
  await page.locator('[data-welcome-mode=hourly]').click();
  await expect(page.locator('#welcome-to')).toBeHidden();
@@ -38,7 +41,7 @@ test('mobile hourly planner can close, stay dismissed and replay',async({page})=
  expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true);
 });
 test('scroll dismisses the welcome planner and does not return on scroll up',async({page})=>{
- await page.goto('/?lang=en');await expect(page.locator('#welcome-booking')).toBeVisible({timeout:11000});
+ await page.goto('/?lang=en');await page.locator('#opening-skip').click();await page.locator('#replay-welcome').click();await expect(page.locator('#welcome-booking')).toBeVisible({timeout:11000});
  await page.mouse.wheel(0,150);await expect(page.locator('#welcome-booking')).toBeHidden();
  await page.evaluate(()=>scrollTo({top:0,behavior:'instant'}));await expect(page.locator('#welcome-booking')).toBeHidden();
  await page.locator('#replay-welcome').click();await expect(page.locator('#welcome-booking')).toBeVisible();

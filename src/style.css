@@ -226,9 +226,12 @@ html:not(.js) .reveal{opacity:1;transform:none}html:not(.js) .hero-sequence{heig
 @media(max-width:760px){.service-summary{font-size:14px;margin-top:0}}
 .social-logos{flex-wrap:wrap}
 .brand-opening[hidden]{display:none!important}
-.brand-opening{position:fixed;z-index:130;left:50%;top:50%;transform:translate(-50%,-50%);width:min(640px,90vw);max-height:85svh;background:#000;border:1px solid #bfa78255;box-shadow:0 20px 90px #0009}
-.brand-opening video{display:block;width:100%;height:auto;max-height:70svh;object-fit:contain}
-.opening-controls{display:flex;justify-content:flex-end;gap:20px;padding:12px 18px;background:#111710;color:#e4d4b4}
+.startup-pending,.startup-pending body{background:#000}
+.startup-pending body>:not(#brand-opening){visibility:hidden}
+body.startup-active{overflow:hidden}
+.brand-opening{position:fixed;z-index:150;inset:0;width:100%;height:100%;background:#000}
+.brand-opening video{display:block;width:100%;height:100%;object-fit:contain}
+.opening-controls{position:absolute;right:max(20px,env(safe-area-inset-right));top:max(20px,env(safe-area-inset-top));display:flex;justify-content:flex-end;color:#e4d4b4}
 .opening-controls button{padding:8px 12px;background:transparent;color:inherit;font-size:13px;border:1px solid #bfa78266}
 
 /* Supplied finished animation replaces the navigation and footer logos. */

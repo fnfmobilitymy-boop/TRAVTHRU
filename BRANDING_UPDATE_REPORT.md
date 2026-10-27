@@ -1,138 +1,90 @@
-# TRAVTHRU animated brand logos
+# TRAVTHRU animated branding — current implementation
 
-## Current implementation
+## Startup experience
 
-The owner clarified that the two brand logos in the navigation and footer are
-both to use the supplied finished animation. The owner also requested backgrounds
-that blend with the website. This supersedes the earlier hero-only placement and
-request for a separate transparent navigation asset.
+The owner clarified that this should feel like a device startup: a fullscreen
+video first, followed directly by the website. This supersedes the earlier
+contained-card interpretation and non-fullscreen instruction.
 
-- Header, desktop and mobile: the old icon and text lockup is replaced by the
-  supplied animated TRAVTHRU / Alphard logo, linked to the homepage.
-- Footer: the same finished animated logo replaces the old icon and text lockup.
-- Hero: the extra video panel from the previous interpretation is removed;
-  the original hero composition and mobile height are restored.
-- Header and footer brand row use the website's deep green gradient. Screen
-  blending integrates the video's black matte into that background without a
-  separate rectangular video box. Gold lettering remains legible. The rest of
-  the footer retains its existing background.
-- No video, logo text or light sweep has been regenerated or redrawn. Source
-  media remains 16:9. The header now trims outer matte in its display window while
-  retaining the complete uppercase **TRAVTHRU** name and vehicle front. The footer
-  keeps the complete 16:9 composition. Neither placement distorts proportions.
+- A first visit in a tab displays the supplied TRAVTHRU / Alphard film on a
+  fullscreen black background for its approximately 5.04-second duration.
+- The underlying website is hidden during startup. Completion reveals the
+  homepage directly, without automatically opening the enquiry planner.
+- Proportional `contain` sizing preserves the entire uppercase TRAVTHRU name and
+  vehicle; portrait phones have black letterboxing rather than cropped content.
+- The original sound is retained. Playback attempts audible autoplay; where the
+  browser blocks that, it falls back to muted playback and enables sound after
+  a trusted interaction while the opening remains visible. Audible autoplay
+  cannot be guaranteed on every browser. There is no sound button or prompt.
+- Skip, Escape or desktop wheel scrolling closes startup and stops/unloads audio.
+  The footer has separate actions to replay startup and open the trip planner.
+- Reduced-motion and returning-tab visitors see the website directly. A versioned
+  session flag lets existing visitors see this corrected startup once.
+- A small early head script prevents the page flashing before the video. Its
+  fail-open timer restores page visibility if the main script cannot load.
+  Without JavaScript, the website remains visible and crawlable.
 
-## Playback and fallback
+## Navigation and footer logos
 
-Both placements autoplay silently, muted and inline, once when entering view.
-They show the final supplied frame after completion or autoplay/media failure.
-The footer does not load its video sources before entering view. The two players
-reuse the same small media files. No fullscreen loading screen is used.
+Both use the supplied finished animated logo instead of the former icon/text
+lockup. They play silently once when visible, retain the final static frame and
+use no video requests for reduced motion. The footer is deferred until in view.
 
-Reduced-motion visitors receive the final static frame with no video request;
-changing to reduced motion stops active players. The supplied source audio has
-been removed from both delivery formats. The header's completion drives the
-existing welcome planner sequence; the footer never reopens that planner.
+Deep green backgrounds and screen blending integrate the black matte. The header
+trims outer matte and enlarges the display by approximately 27%, retaining the
+complete wordmark and vehicle front. PRIVATE CHAUFFEUR & TOURS sits beside it;
+phone layouts wrap that descriptor. The footer uses the full 16:9 composition.
+No additional hero video panel remains.
 
-## Media
+The existing welcome envelope, manual trip planner, booking form, WhatsApp links,
+three languages, gallery, routes and SEO metadata remain available. The old icon
+remains in the envelope, favicon, manifest and existing structured-data reference.
+
+## Supplied media and delivery assets
 
 Input: `kling_20261027_Creation_Create_a_5_5850_0.mp4`, 2,559,501 bytes,
 1920 × 1080, approximately 5.04 seconds, H.264 / AAC.
+No animation, wordmark or light sweep was regenerated or redrawn.
 
-| Derived asset | Format | Bytes |
+| Asset | Delivery format | Bytes |
 | --- | --- | ---: |
 | `public/videos/travthru-logo.mp4` | H.264, fast start, 1280 × 720, no audio | 263,733 |
 | `public/videos/travthru-logo.webm` | VP9, 1280 × 720, no audio | 218,435 |
 | `public/images/travthru-logo-poster.webp` | Final supplied frame, 1280 × 720 | 51,776 |
+| `public/videos/travthru-opening.mp4` | Optimized H.264 with original AAC audio copied from source | 348,110 |
 
-Transcoding and proportional resizing are the only transformations to the files.
-`preload="none"` and deferred source assignment avoid unnecessary downloads.
-The former static icon is still used for the existing envelope, favicon and
-manifest; SEO metadata and its logo reference are unchanged.
+The opening reuses the optimized picture and original audio streams without
+regeneration or further re-encoding. All players use `preload="none"`; the opening
+source is only assigned when startup is needed. Completion/dismissal releases it.
 
-## Files in this correction
+## Files relevant to the latest startup correction
 
-- `index.html`: two animated brand anchors, no extra hero video panel.
-- `src/brand-video.js`: shared viewport-triggered once-only controller, one per
-  placement; preserve header-ready signal for the welcome planner.
-- `src/style.css`: contained logo sizing, green backgrounds and blending;
-  restore original hero sizing.
-- `tests/brand-video.spec.js`: header playback, footer lazy playback and homepage
-  link, absence of extra hero video, MP4 fallback, failed media and reduced motion.
-- `tests/welcome.spec.js`: use the header branding selector.
-- `BRANDING_UPDATE_REPORT.md`: current implementation and validation record.
+- `index.html`: early startup visibility guard; fullscreen opening markup reused.
+- `src/opening.js`: hide/reveal website and stop media on dismissal/completion.
+- `src/welcome.js`: startup goes directly to the site; manual planner remains.
+- `src/style.css`: fullscreen black stage, proportional video, discreet skip.
+- `tests/opening.spec.js`: fullscreen bounds, media duration, sound interaction,
+  direct entry to homepage, no automatic planner, dismissal and replay.
+- `tests/welcome.spec.js`, `tests/malay.spec.js`, `tests/brand-video.spec.js`:
+  validate the independent planner and versioned startup session behaviour.
+- `BRANDING_UPDATE_REPORT.md`: this current delivery record.
 
-The media files, localized path handling and translation guards from the previous
-verified release are reused. No dependency, booking endpoint, WhatsApp target,
-SEO content, routes, domain/DNS setting or deployment workflow has been changed.
+## Verification
 
-## Verification and release
+- Production build: passed.
+- Full functional suite: **18 tests passed (30.0 seconds)**.
+- Static three-language SEO checker: passed; metadata, canonical URLs,
+  sitemap/robots, LocalBusiness data, assets, anchors and layout checks unchanged.
+- JavaScript syntax and Git whitespace checks: passed.
+- No lint script or lint configuration exists; no lint run is claimed.
+- Fullscreen bounds checked at desktop 1440 × 1000 and phone 390 × 844. After
+  dismissal, the homepage is visible and the quick planner remains hidden.
+- Screenshots: `artifacts/startup-fullscreen-desktop.png` and
+  `artifacts/startup-fullscreen-mobile.png` (local and ignored by Git).
+- The AAC source has nonzero audio and Chromium confirms unmuted playback after
+  interaction. Physical real-device sound output and iOS Safari are not verified.
 
-Verified locally: `npm test` — 16 tests passed (45.6 seconds);
-`npm run build` — passed; `node scripts/check-seo.mjs` — passed for all three
-languages, metadata, canonical URLs, sitemap/robots, schema and local assets.
-JavaScript syntax and Git whitespace checks passed. No lint script or lint
-configuration exists in the repository.
-
-Local Chromium screenshots:
-
-- `artifacts/brand-placement-desktop.png`
-- `artifacts/brand-placement-tablet.png`
-- `artifacts/brand-placement-mobile.png`
-- `artifacts/brand-placement-small-mobile.png`
-- `artifacts/brand-footer-desktop.png`
-- `artifacts/brand-footer-mobile.png`
-
-Screenshots are local and ignored by Git. Desktop/tablet/phone layouts were
-inspected at 1440, 768, 390 and 320 pixels, with no horizontal page overflow.
-Real-device Safari/iOS testing has not been performed; static fallbacks cover
-browser autoplay restrictions. Production verification must follow deployment.
-
-Publication is authorised by the owner's request to publish and subsequent
-placement/background corrections. Confirm successful deployment and live assets
-before reporting the correction as live.
-
-## Header fullness refinement
-
-Approved by the owner after reviewing the first navigation placement:
-
-- Desktop video display enlarged by approximately 27% relative to the previous
-  160-pixel source display; outer background margins are trimmed in CSS only.
-- Add `PRIVATE CHAUFFEUR & TOURS` beside the logo with a restrained gold divider.
-  The descriptor wraps to three lines on phones so the language selector and
-  menu stay accessible. The English descriptor is part of the brand lockup.
-- Tighten desktop header height from 101 to 100 pixels and phone height from
-  80 to 76 pixels; narrow side spacing without altering hero content.
-- Video files, silence, once-only playback, fallbacks and footer behaviour are
-  unchanged. No new dependencies or interaction code.
-- Chinese, English and Malay inspected at 320, 390, 768 and 1440 pixels, with no
-  horizontal overflow. Header screenshots: `artifacts/brand-fuller-320.png`,
-  `brand-fuller-390.png`, `brand-fuller-768.png`, `brand-fuller-1440.png`.
-
-## Five-second opening with original sound
-
-The owner requested a separate opening of approximately five seconds with sound,
-then explicitly requested that no “Play with sound” button be displayed.
-
-- Added a dismissible, contained welcome animation card using the supplied film.
-  It does not replace the page with a fullscreen loading screen.
-- `public/videos/travthru-opening.mp4` reuses the optimized H.264 video stream and
-  the source file's original AAC audio, copied without regeneration or re-encoding.
-  Duration is approximately 5.04 seconds. Navigation and footer files stay silent.
-- Playback first attempts sound automatically. If the browser blocks audible
-  autoplay, playback falls back to muted and a trusted pointer/key interaction
-  while the opening is visible enables sound. No sound button or permission
-  prompt is displayed. Audible autoplay cannot be guaranteed on every browser.
-- Completion continues to the existing envelope/planner. Skip, Escape or scroll
-  dismisses the opening and immediately stops/unloads audio. Reduced motion
-  skips the opening entirely. It appears once per tab session; a translated
-  footer “Replay intro” action makes it available again without removing the
-  direct “Open trip planner” action.
-- Changed `index.html`, `src/main.js`, `src/welcome.js`, `src/opening.js`,
-  `src/style.css`, translations and the new opening MP4.
-- `tests/opening.spec.js` verifies the five-second duration, no sound button,
-  audible playback after interaction, progression to the planner, scroll/audio
-  dismissal and replay. Full suite: **18 passed (42.8 seconds)**. Production
-  build, JavaScript syntax and three-language SEO checks passed.
-- Desktop and mobile opening inspected locally with no horizontal overflow.
-  Real-device sound output has not been physically checked; media probes confirm
-  an AAC track with nonzero source audio, and Chromium confirms unmuted playback.
+No dependencies, payment processing, contact destinations, live DNS/domain
+settings or deployment workflow were changed. Publication is authorised by the
+owner's ongoing request; verify the deployment and live assets before claiming
+this correction is live.

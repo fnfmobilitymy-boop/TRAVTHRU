@@ -4,7 +4,7 @@ export function initWelcome({onPlan}){
  const envelope=document.querySelector('#welcome-envelope'),panel=document.querySelector('#welcome-booking'),form=document.querySelector('#welcome-form');
  const opening=initOpening();
  const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
- const storageKey='travthru-welcome-seen';
+ const storageKey='travthru-startup-seen-v2';
  let mode='transfer',generation=0,baseline=0,active=false;
  const timers=new Set();
  function schedule(fn,delay){const id=setTimeout(()=>{timers.delete(id);fn()},delay);timers.add(id)}
@@ -12,10 +12,10 @@ export function initWelcome({onPlan}){
  function remember(){try{sessionStorage.setItem(storageKey,'1')}catch{}}
  function close(){generation++;opening.close();active=false;clearTimers();remember();envelope.hidden=true;panel.classList.remove('is-visible');panel.hidden=true;document.body.classList.remove('welcome-active');}
  function reveal(){opening.close();clearTimers();envelope.hidden=false;envelope.classList.remove('is-opening');void envelope.offsetWidth;envelope.classList.add('is-opening');schedule(()=>{if(!active)return;envelope.hidden=true;panel.hidden=false;document.body.classList.add('welcome-active');requestAnimationFrame(()=>panel.classList.add('is-visible'))},reduce?0:800)}
- function start(force=false,withOpening=false){let seen=false;try{seen=sessionStorage.getItem(storageKey)==='1'}catch{}if(!force&&(seen||location.hash||scrollY>40))return;
+ function start(force=false,withOpening=false){let seen=false;try{seen=sessionStorage.getItem(storageKey)==='1'}catch{}if(!force&&(seen||location.hash||scrollY>40)){document.documentElement.classList.remove('startup-pending');return;}
   close();active=true;baseline=scrollY;panel.hidden=true;panel.classList.remove('is-visible');
   const current=generation;const show=()=>{if(current===generation&&active)reveal()};
-  if((force&&!withOpening)||reduce)schedule(show,100);else{schedule(show,12000);opening.play().then(show);}
+  if(force&&!withOpening)schedule(show,100);else if(reduce)close();else{const enter=()=>{if(current===generation&&active)close()};schedule(enter,12000);opening.play().then(enter);}
  }
  document.querySelector('#replay-opening').addEventListener('click',()=>{window.scrollTo({top:0,behavior:'instant'});start(true,true)});
  document.querySelector('#close-welcome').addEventListener('click',close);

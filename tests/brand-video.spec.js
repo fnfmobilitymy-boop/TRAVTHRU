@@ -1,7 +1,7 @@
 import {test,expect} from '@playwright/test';
 
 test('header logo animation autoplays once and holds its final static frame',async({page})=>{
- await page.addInitScript(()=>{sessionStorage.setItem('travthru-welcome-seen','1');window.brandEnded=0;document.addEventListener('ended',e=>{if(e.target.id==='header-brand-video')window.brandEnded++},true)});
+ await page.addInitScript(()=>{sessionStorage.setItem('travthru-startup-seen-v2','1');window.brandEnded=0;document.addEventListener('ended',e=>{if(e.target.id==='header-brand-video')window.brandEnded++},true)});
  await page.goto('/?lang=en');
  const video=page.locator('#header-brand-video'),frame=page.locator('#header-branding');
  await expect(frame).toHaveAttribute('data-state','playing',{timeout:10000});
@@ -17,7 +17,7 @@ test('header logo animation autoplays once and holds its final static frame',asy
 });
 
 test('MP4 remains playable when the WebM source is unavailable',async({page})=>{
- await page.addInitScript(()=>sessionStorage.setItem('travthru-welcome-seen','1'));
+ await page.addInitScript(()=>sessionStorage.setItem('travthru-startup-seen-v2','1'));
  await page.route('**/videos/*.webm',route=>route.abort());
  await page.goto('/?lang=en');
  await expect(page.locator('#header-branding')).toHaveAttribute('data-state','playing',{timeout:10000});
@@ -25,7 +25,7 @@ test('MP4 remains playable when the WebM source is unavailable',async({page})=>{
 });
 
 test('footer logo starts only in view and the extra hero video is removed',async({page})=>{
- await page.addInitScript(()=>sessionStorage.setItem('travthru-welcome-seen','1'));
+ await page.addInitScript(()=>sessionStorage.setItem('travthru-startup-seen-v2','1'));
  await page.goto('/?lang=en');
  await expect(page.locator('.nav .brand video')).toHaveCount(1);
  await expect(page.locator('.footer-top .brand video')).toHaveCount(1);
@@ -49,7 +49,7 @@ test('reduced motion uses the final image without requesting any video',async({p
  expect(await page.evaluate(()=>[...document.body.childNodes].filter(n=>n.nodeType===Node.TEXT_NODE).every(n=>!n.textContent.trim()))).toBe(true);
  expect(await page.locator('#header-branding img').evaluate(img=>img.complete&&img.naturalWidth>0)).toBe(true);
  await expect(page.locator('#header-brand-video source[src]')).toHaveCount(0);
- await expect(page.locator('#welcome-booking')).toBeVisible();
+ await expect(page.locator('#welcome-booking')).toBeHidden();
  expect(requests).toEqual([]);
 });
 
@@ -58,14 +58,14 @@ test('failed media preserves the logo and leaves booking and navigation working'
  await page.goto('/?lang=en');
  await expect(page.locator('#header-branding')).toHaveAttribute('data-state','static',{timeout:10000});
  await expect(page.locator('#header-branding img')).toBeVisible();
- await expect(page.locator('#welcome-booking')).toBeVisible({timeout:11000});
- await page.locator('#close-welcome').click();
+ await expect(page.locator('#brand-opening')).toBeHidden({timeout:11000});
+ await expect(page.locator('#welcome-booking')).toBeHidden();
  await page.locator('.nav nav a[href="#fleet"]').click();
  await expect(page.locator('#fleet-name')).toBeVisible();
 });
 
 test('changing to reduced motion stops an active animation',async({page})=>{
- await page.addInitScript(()=>sessionStorage.setItem('travthru-welcome-seen','1'));
+ await page.addInitScript(()=>sessionStorage.setItem('travthru-startup-seen-v2','1'));
  await page.goto('/?lang=en');
  await expect(page.locator('#header-branding')).toHaveAttribute('data-state','playing',{timeout:10000});
  await page.emulateMedia({reducedMotion:'reduce'});

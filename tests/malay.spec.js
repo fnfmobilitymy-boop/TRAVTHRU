@@ -4,7 +4,7 @@ test('three languages, Malay enquiry and localized date fields',async({page})=>{
  await expect(page.locator('html')).toHaveAttribute('lang','ms');
  await expect(page.locator('#language-toggle option')).toHaveCount(3);
  await expect(page.locator('.hero h1')).toContainText('Setiap perjalanan');
- await expect(page.locator('#welcome-booking')).toBeVisible();await page.locator('#close-welcome').click();
+ await page.locator('#replay-welcome').click();await expect(page.locator('#welcome-booking')).toBeVisible();await page.locator('#close-welcome').click();
  await expect(page.locator('#booking-form .date-display')).toHaveText(/HH\/BB\/TTTT/);
  await page.locator('#language-toggle').selectOption('en');await expect(page.locator('#booking-form .date-display')).toHaveText(/DD\/MM\/YYYY/);
  await page.locator('#language-toggle').selectOption('zh');await expect(page.locator('#booking-form .date-display')).toHaveText(/年／月／日/);
