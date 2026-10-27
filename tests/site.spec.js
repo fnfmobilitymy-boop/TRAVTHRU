@@ -8,7 +8,10 @@ test('desktop: continuous scroll, fleet selection and trip consultation',async({
  await expect.poll(()=>page.locator('#scene-count').textContent()).toBe('02 / 03');
  await expect(page.locator('.journey-landscape')).toHaveCSS('opacity','1');
  await page.getByRole('tab',{name:'5 座轿车'}).click();
- await expect(page.locator('#fleet-name')).toHaveText('Perodua Myvi');
+ await expect(page.locator('#fleet-name')).toHaveText('Toyota Vios');
+ await expect(page.locator('#fleet-car')).toHaveCSS('background-image',/toyota-vios\.webp/);
+ await page.locator('#fleet-book').click();
+ await expect(page.locator('[name="vehicle"]')).toHaveValue('Toyota Vios / 同级轿车');
  await page.locator('#fleet-next').click();
  await expect(page.locator('#fleet-name')).toHaveText('Toyota Innova');
  await page.getByRole('tab',{name:'7–10 座 Staria'}).click();
@@ -51,7 +54,7 @@ test('mobile: navigation, fleet swipe, booking and reduced motion',async({page})
  const b=await page.locator('#fleet-car').boundingBox();
  await page.mouse.move(b.x+b.width*.7,b.y+b.height*.5);await page.mouse.down();
  await page.mouse.move(b.x+b.width*.25,b.y+b.height*.5,{steps:5});await page.mouse.up();
- await expect(page.locator('#fleet-name')).toHaveText('Perodua Myvi');
+ await expect(page.locator('#fleet-name')).toHaveText('Toyota Vios');
  await page.locator('#quick-service').selectOption('定制旅游');await page.locator('#quick-location').selectOption('槟城 · Penang');
  await page.locator('#quick-submit').click();
  await expect(page.locator('[name="service"]')).toHaveValue('定制旅游');
