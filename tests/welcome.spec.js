@@ -1,9 +1,9 @@
 import {test,expect} from '@playwright/test';
-test('opening logo leads to the envelope planner and a transfer enquiry',async({page})=>{
+test('inline hero logo leads to the envelope planner and a transfer enquiry',async({page})=>{
  await page.goto('/?lang=en',{waitUntil:'domcontentloaded'});
- await expect(page.locator('#brand-intro')).toBeVisible();
- await expect(page.locator('.intro-brand-name')).toHaveText('TRAVTHRU');
- await expect(page.locator('#welcome-booking')).toBeVisible({timeout:7000});
+ await expect(page.locator('#hero-branding')).toBeVisible();
+ await expect(page.locator('#brand-intro')).toHaveCount(0);
+ await expect(page.locator('#welcome-booking')).toBeVisible({timeout:11000});
  await page.locator('#welcome-from').fill('KLIA Terminal 1');
  await page.locator('#welcome-to').fill('KLCC hotel');
  await page.locator('#swap-route').click();
@@ -38,10 +38,9 @@ test('mobile hourly planner can close, stay dismissed and replay',async({page})=
  expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true);
 });
 test('scroll dismisses the welcome planner and does not return on scroll up',async({page})=>{
- await page.goto('/?lang=en');await expect(page.locator('#welcome-booking')).toBeVisible({timeout:7000});
+ await page.goto('/?lang=en');await expect(page.locator('#welcome-booking')).toBeVisible({timeout:11000});
  await page.mouse.wheel(0,150);await expect(page.locator('#welcome-booking')).toBeHidden();
  await page.evaluate(()=>scrollTo({top:0,behavior:'instant'}));await expect(page.locator('#welcome-booking')).toBeHidden();
- await page.locator('#replay-welcome').click();await expect(page.locator('#brand-intro')).toBeVisible();
- await page.locator('#skip-intro').click();await expect(page.locator('#welcome-booking')).toBeVisible();
+ await page.locator('#replay-welcome').click();await expect(page.locator('#welcome-booking')).toBeVisible();
  await page.keyboard.press('Escape');await expect(page.locator('#welcome-booking')).toBeHidden();
 });

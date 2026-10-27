@@ -5,6 +5,7 @@ import '@fontsource/noto-sans-sc/700.css';
 import '@fontsource-variable/archivo/standard.css';
 import {t,isEnglish,isMalay,initLanguage} from './i18n.js';
 import {initWelcome} from './welcome.js';
+import {initBrandVideo} from './brand-video.js';
 import {initAirflow} from './airflow.js';
 import {initDates} from './dates.js';
 import {initGallery} from './gallery.js';
@@ -97,7 +98,7 @@ addEventListener('scroll',onScroll,{passive:true});addEventListener('resize',onS
 document.addEventListener('languagechange',()=>{renderVehicle();closeMenu();if(!$('#form-result').hidden)renderSummary();if(dialog.open)dialog.close()});
 initLanguage();
 
-initWelcome({onPlan:({service,date,people,message})=>{bookingForm.elements.date.value=date;bookingForm.elements.passengers.value=people;plan(service,message)}});
+initWelcome({brandingReady:initBrandVideo(),onPlan:({service,date,people,message})=>{bookingForm.elements.date.value=date;bookingForm.elements.passengers.value=people;plan(service,message)}});
 
 initAirflow();
 

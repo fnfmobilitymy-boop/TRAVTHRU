@@ -5,10 +5,10 @@ import {updateSeo} from './seo-client.js';
 let language='zh';
 try { language=new URLSearchParams(location.search).get('lang') || (location.pathname.match(/\/(en|ms)\/?$/)?.[1]) || localStorage.getItem('travthru-language') || 'zh'; } catch {}
 if(!['zh','en','ms'].includes(language))language='zh';
-const reverse=new Map([...Object.entries(copy).map(([k,v])=>[v.trim(),k]),...Object.entries(copy).map(([k,v])=>[(ms[v]||'').trim(),k])]);
+const reverse=new Map([...Object.entries(copy).map(([k,v])=>[v.trim(),k]),...Object.entries(copy).filter(([,v])=>ms[v]?.trim()).map(([k,v])=>[ms[v].trim(),k])]);
 const records=[];
 const walker=document.createTreeWalker(document.body,NodeFilter.SHOW_TEXT);
-while(walker.nextNode()){const node=walker.currentNode;if(node.parentElement.closest('script,style,pre'))continue;const raw=node.textContent.trim();const key=copy[raw]?raw:reverse.get(raw);if(copy[key])records.push({node,key,leading:node.textContent.match(/^\s*/)[0],trailing:node.textContent.match(/\s*$/)[0]})}
+while(walker.nextNode()){const node=walker.currentNode;if(node.parentElement.closest('script,style,pre'))continue;const raw=node.textContent.trim();if(!raw)continue;const key=copy[raw]?raw:reverse.get(raw);if(copy[key])records.push({node,key,leading:node.textContent.match(/^\s*/)[0],trailing:node.textContent.match(/\s*$/)[0]})}
 const attributes=[];
 document.querySelectorAll('[placeholder],[aria-label],[alt],[title]').forEach(el=>{for(const attr of ['placeholder','aria-label','alt','title']){const raw=el.getAttribute(attr);const key=copy[raw]?raw:reverse.get(raw);if(copy[key])attributes.push({el,attr,key})}});
 // Values are stable identifiers, independent of the translated option labels.
