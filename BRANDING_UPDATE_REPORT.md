@@ -16,9 +16,10 @@ request for a separate transparent navigation asset.
   blending integrates the video's black matte into that background without a
   separate rectangular video box. Gold lettering remains legible. The rest of
   the footer retains its existing background.
-- No video, logo text or light sweep has been regenerated or redrawn. The complete
-  16:9 composition is displayed with `object-fit: contain`, without cropping the
-  uppercase **TRAVTHRU** name or distorting its proportions.
+- No video, logo text or light sweep has been regenerated or redrawn. Source
+  media remains 16:9. The header now trims outer matte in its display window while
+  retaining the complete uppercase **TRAVTHRU** name and vehicle front. The footer
+  keeps the complete 16:9 composition. Neither placement distorts proportions.
 
 ## Playback and fallback
 
@@ -66,7 +67,7 @@ SEO content, routes, domain/DNS setting or deployment workflow has been changed.
 
 ## Verification and release
 
-Verified locally: `npm test` — 16 tests passed (41.2 seconds);
+Verified locally: `npm test` — 16 tests passed (45.6 seconds);
 `npm run build` — passed; `node scripts/check-seo.mjs` — passed for all three
 languages, metadata, canonical URLs, sitemap/robots, schema and local assets.
 JavaScript syntax and Git whitespace checks passed. No lint script or lint
@@ -89,3 +90,20 @@ browser autoplay restrictions. Production verification must follow deployment.
 Publication is authorised by the owner's request to publish and subsequent
 placement/background corrections. Confirm successful deployment and live assets
 before reporting the correction as live.
+
+## Header fullness refinement
+
+Approved by the owner after reviewing the first navigation placement:
+
+- Desktop video display enlarged by approximately 27% relative to the previous
+  160-pixel source display; outer background margins are trimmed in CSS only.
+- Add `PRIVATE CHAUFFEUR & TOURS` beside the logo with a restrained gold divider.
+  The descriptor wraps to three lines on phones so the language selector and
+  menu stay accessible. The English descriptor is part of the brand lockup.
+- Tighten desktop header height from 101 to 100 pixels and phone height from
+  80 to 76 pixels; narrow side spacing without altering hero content.
+- Video files, silence, once-only playback, fallbacks and footer behaviour are
+  unchanged. No new dependencies or interaction code.
+- Chinese, English and Malay inspected at 320, 390, 768 and 1440 pixels, with no
+  horizontal overflow. Header screenshots: `artifacts/brand-fuller-320.png`,
+  `brand-fuller-390.png`, `brand-fuller-768.png`, `brand-fuller-1440.png`.
