@@ -12,6 +12,6 @@ try{for(const [language,data] of Object.entries(locales)){
  await context.close();checks++;console.log(`PASS ${language}: static metadata, crawlable HTML without JS, schema, assets, anchors, three viewport widths`);
  }
  const context=await browser.newContext();const page=await context.newPage();await page.route('**/*',r=>r.request().url().startsWith(origin)?r.continue():r.abort());await page.goto(origin+'/en/');assert.equal(await page.locator('html').getAttribute('lang'),'en');await page.locator('#language-toggle').selectOption('ms');assert.equal(await page.locator('html').getAttribute('lang'),'ms');assert.equal(await page.title(),locales.ms.title);assert.equal(await page.locator('link[rel=canonical]').getAttribute('href'),pageUrl('ms'));await context.close();
- const xml=fs.readFileSync('dist/sitemap.xml','utf8');for(const lang of Object.keys(locales))assert(xml.includes(`<loc>${pageUrl(lang)}</loc>`));assert.equal((xml.match(/<loc>/g)||[]).length,3);assert(fs.readFileSync('dist/robots.txt','utf8').includes('Sitemap: https://www.travthru.com/sitemap.xml'));
+ const xml=fs.readFileSync('dist/sitemap.xml','utf8');for(const lang of Object.keys(locales))assert(xml.includes(`<loc>${pageUrl(lang)}</loc>`));assert.equal((xml.match(/<loc>/g)||[]).length,3);assert(fs.readFileSync('dist/robots.txt','utf8').includes('Sitemap: https://travthru.com/sitemap.xml'));
  console.log(`PASS ${checks} localized pages + live language metadata + sitemap/robots checks`);
 }finally{await browser.close();server.close()}

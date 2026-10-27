@@ -40,9 +40,9 @@ jobs:
           GH_TOKEN: ${{ github.token }}
         run: |
           pages_host="$(gh api "repos/${GITHUB_REPOSITORY}/pages" --jq '.cname // empty')"
-          if [ "$pages_host" = "www.travthru.com" ]; then
+          if [ "$pages_host" = "www.travthru.com" ] || [ "$pages_host" = "travthru.com" ]; then
             echo 'SEO_DEPLOYMENT=production' >> "$GITHUB_ENV"
-            echo 'SEO_SITE_URL=https://www.travthru.com/' >> "$GITHUB_ENV"
+            echo "SEO_SITE_URL=https://${pages_host}/" >> "$GITHUB_ENV"
           elif [ -z "$pages_host" ]; then
             echo 'SEO_DEPLOYMENT=preview' >> "$GITHUB_ENV"
             echo 'SEO_SITE_URL=https://fnfmobilitymy-boop.github.io/TRAVTHRU/' >> "$GITHUB_ENV"
