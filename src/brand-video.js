@@ -1,7 +1,12 @@
-// The finished client animation plays at most once per page, only in view.
+// The finished client animation plays at most once per placement, only in view.
 // Keep the supplied final frame visible for reduced motion and media failures.
 export function initBrandVideo(){
- const frame=document.querySelector('#hero-branding'),video=document.querySelector('#hero-brand-video');
+ const ready=[...document.querySelectorAll('.brand-video-frame')].map(initVideo);
+ // Only header playback affects the existing welcome planner timing.
+ return ready[0]||Promise.resolve();
+}
+function initVideo(frame){
+ const video=frame.querySelector('video');
  const preference=matchMedia('(prefers-reduced-motion: reduce)');
  let started=false,finished=false,timer,resolveReady;
  const ready=new Promise(resolve=>resolveReady=resolve);

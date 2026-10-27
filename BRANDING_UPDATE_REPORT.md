@@ -1,105 +1,91 @@
-# TRAVTHRU supplied logo animation update
+# TRAVTHRU animated brand logos
 
-## Status
+## Current implementation
 
-Implemented and verified locally. The owner has authorised publication of this
-version with the existing navigation and footer logos retained. The full static-logo
-replacement is pending the owner's transparent SVG, PNG or WebP of the new logo.
-The supplied MP4 has a black background and is not a transparent navigation logo.
-No logo or animation was regenerated or redrawn.
+The owner clarified that the two brand logos in the navigation and footer are
+both to use the supplied finished animation. The owner also requested backgrounds
+that blend with the website. This supersedes the earlier hero-only placement and
+request for a separate transparent navigation asset.
 
-## Placement audit
+- Header, desktop and mobile: the old icon and text lockup is replaced by the
+  supplied animated TRAVTHRU / Alphard logo, linked to the homepage.
+- Footer: the same finished animated logo replaces the old icon and text lockup.
+- Hero: the extra video panel from the previous interpretation is removed;
+  the original hero composition and mobile height are restored.
+- Header and footer brand row use the website's deep green gradient. Screen
+  blending integrates the video's black matte into that background without a
+  separate rectangular video box. Gold lettering remains legible. The rest of
+  the footer retains its existing background.
+- No video, logo text or light sweep has been regenerated or redrawn. The complete
+  16:9 composition is displayed with `object-fit: contain`, without cropping the
+  uppercase **TRAVTHRU** name or distorting its proportions.
 
-| Placement | Existing implementation | Result |
-| --- | --- | --- |
-| Header / desktop navigation | `index.html` shared brand anchor, `logo-mark.png` and uppercase wordmark | Existing static brand retained pending transparent new asset |
-| Mobile navigation | Same header brand anchor; collapsible navigation | Same pending asset; narrow-screen sizing checked |
-| Homepage opening | Full-screen `#brand-intro` and progress animation | Removed; no full-screen loading screen |
-| Homepage hero | `.hero-model` branding area | Supplied film embedded within this area with complete 16:9 composition |
-| Booking envelope | Existing static `logo-mark.png` | Retained pending transparent asset; booking functionality retained |
-| Footer | Shared brand markup with `logo-mark.png` | Retained pending transparent new asset |
-| Favicon / manifest / LocalBusiness logo reference | Existing SVG/PNG assets | Unchanged; no SEO metadata changes |
+## Playback and fallback
 
-## Media and behaviour
+Both placements autoplay silently, muted and inline, once when entering view.
+They show the final supplied frame after completion or autoplay/media failure.
+The footer does not load its video sources before entering view. The two players
+reuse the same small media files. No fullscreen loading screen is used.
+
+Reduced-motion visitors receive the final static frame with no video request;
+changing to reduced motion stops active players. The supplied source audio has
+been removed from both delivery formats. The header's completion drives the
+existing welcome planner sequence; the footer never reopens that planner.
+
+## Media
 
 Input: `kling_20261027_Creation_Create_a_5_5850_0.mp4`, 2,559,501 bytes,
-1920 × 1080, approximately 5.04 seconds, H.264 with AAC audio.
+1920 × 1080, approximately 5.04 seconds, H.264 / AAC.
 
-Derived delivery assets preserve the supplied frames, timing, black background,
-gold uppercase **TRAVTHRU** typography and golden sweep. Transcoding and resizing
-were the only video transformations; no crop, redesign, generation or overlays.
-
-| Asset | Purpose | Bytes |
+| Derived asset | Format | Bytes |
 | --- | --- | ---: |
-| `public/videos/travthru-logo.mp4` | H.264 1280 × 720, fast-start, no audio | 263,733 |
-| `public/videos/travthru-logo.webm` | VP9 1280 × 720, no audio | 218,435 |
-| `public/images/travthru-logo-poster.webp` | Final supplied frame, 1280 × 720 | 51776 |
+| `public/videos/travthru-logo.mp4` | H.264, fast start, 1280 × 720, no audio | 263,733 |
+| `public/videos/travthru-logo.webm` | VP9, 1280 × 720, no audio | 218,435 |
+| `public/images/travthru-logo-poster.webp` | Final supplied frame, 1280 × 720 | 51,776 |
 
-The hero video has `autoplay`, `muted`, `playsinline` and `preload="none"`,
-without looping. Sources are assigned only when the branding area enters view.
-WebM is preferred, with MP4 as the alternative. Completion displays the final
-static frame and releases the media source. Autoplay refusal, media error or an
-eight-second loading/playback timeout uses the same static fallback. The film
-never restarts on scrolling, language changes or reopening the trip planner.
+Transcoding and proportional resizing are the only transformations to the files.
+`preload="none"` and deferred source assignment avoid unnecessary downloads.
+The former static icon is still used for the existing envelope, favicon and
+manifest; SEO metadata and its logo reference are unchanged.
 
-With `prefers-reduced-motion: reduce`, no video sources are assigned and no film
-is downloaded. Switching to reduced motion during playback stops it. With
-JavaScript disabled, the static image remains available. `object-fit: contain`
-preserves the complete company name and car without changing their proportions.
+## Files in this correction
 
-The existing envelope and trip planner follow completion/fallback, remain
-dismissible by scrolling, close button or Escape, and reopen from the footer.
-The former “Replay intro” action now reads “Open trip planner” in all three
-languages. A bounded wait prevents media loading from blocking the planner.
+- `index.html`: two animated brand anchors, no extra hero video panel.
+- `src/brand-video.js`: shared viewport-triggered once-only controller, one per
+  placement; preserve header-ready signal for the welcome planner.
+- `src/style.css`: contained logo sizing, green backgrounds and blending;
+  restore original hero sizing.
+- `tests/brand-video.spec.js`: header playback, footer lazy playback and homepage
+  link, absence of extra hero video, MP4 fallback, failed media and reduced motion.
+- `tests/welcome.spec.js`: use the header branding selector.
+- `BRANDING_UPDATE_REPORT.md`: current implementation and validation record.
 
-## Changed files
+The media files, localized path handling and translation guards from the previous
+verified release are reused. No dependency, booking endpoint, WhatsApp target,
+SEO content, routes, domain/DNS setting or deployment workflow has been changed.
 
-- `index.html`: replace the full-screen intro with inline hero media and fallback;
-  retain existing normal static logos pending the correct asset.
-- `src/brand-video.js`: viewport-triggered once-only playback and fallback handling.
-- `src/main.js`: initialise hero branding and pass completion to the planner.
-- `src/welcome.js`: retain the planner/envelope without a full-screen intro.
-- `src/style.css`: responsive contained media and small-phone spacing.
-- `src/translations.js`, `src/ms.js`: logo alternative text and planner action.
-- `src/i18n.js`: ignore empty reverse translations and whitespace-only nodes;
-  prevents missing translations from rendering stray text in whitespace nodes.
-- `scripts/localize.py`: preserve correct video/poster paths for localized and
-  subdirectory builds.
-- Three derived media files listed above.
-- `tests/brand-video.spec.js`: playback, completion, reduced-motion, media-failure
-  and MP4-alternative coverage.
-- `tests/welcome.spec.js`: verify the planner sequence with inline branding.
-- `BRANDING_UPDATE_REPORT.md`: this delivery record.
+## Verification and release
 
-## Verification
+Verified locally: `npm test` — 16 tests passed (41.2 seconds);
+`npm run build` — passed; `node scripts/check-seo.mjs` — passed for all three
+languages, metadata, canonical URLs, sitemap/robots, schema and local assets.
+JavaScript syntax and Git whitespace checks passed. No lint script or lint
+configuration exists in the repository.
 
-- Production build: `npm run build` — passed.
-- Functional suite: `npm test` — 15 tests passed (44.1 seconds).
-- SEO regression check: `node scripts/check-seo.mjs`, covering all three static
-  language pages, metadata, canonical URLs, sitemap, robots, assets and schema — passed.
-- Syntax checks: `node --check` for changed application JavaScript;
-  Python parser validates `scripts/localize.py`.
-- No lint script or lint configuration exists in this repository. No lint run
-  is claimed and no dependency was added for this change.
-- Responsive inspections: Chinese, English and Malay at 320, 390, 768 and 1440 px;
-  no horizontal page overflow in the checked layouts. Screenshots inspected in
-  desktop Chromium, with reduced motion to show the final frame consistently.
-- Functional tests include booking summaries, WhatsApp links, mobile navigation,
-  fleet selection, language switching, gallery and welcome planner interactions.
-- Screenshots: `artifacts/logo-desktop.png`, `artifacts/logo-tablet.png`,
-  `artifacts/logo-mobile.png`, `artifacts/logo-mobile-small.png` (local, ignored
-  by Git). Header/footer still display the previous static logo in these previews.
+Local Chromium screenshots:
 
-No dependencies, booking endpoint, WhatsApp destination, SEO copy, pages,
-domain/DNS configuration or deployment workflow were changed.
+- `artifacts/brand-placement-desktop.png`
+- `artifacts/brand-placement-tablet.png`
+- `artifacts/brand-placement-mobile.png`
+- `artifacts/brand-placement-small-mobile.png`
+- `artifacts/brand-footer-desktop.png`
+- `artifacts/brand-footer-mobile.png`
 
-## Pending / not verified
+Screenshots are local and ignored by Git. Desktop/tablet/phone layouts were
+inspected at 1440, 768, 390 and 320 pixels, with no horizontal page overflow.
+Real-device Safari/iOS testing has not been performed; static fallbacks cover
+browser autoplay restrictions. Production verification must follow deployment.
 
-- Owner must supply a matching **transparent** static logo before normal-logo
-  replacements can be completed. The black video poster is used only inside the
-  black hero media area, never substituted into navigation or footer logos.
-- Production playback and real-device Safari/iOS/Android testing have not been
-  performed; browser checks use local Chromium. Autoplay policy can vary by
-  browser settings, which is why the static fallback is always present.
-- Publication was authorised after local verification. Confirm the release workflow
-  and live assets before reporting production deployment as complete.
+Publication is authorised by the owner's request to publish and subsequent
+placement/background corrections. Confirm successful deployment and live assets
+before reporting the correction as live.

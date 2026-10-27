@@ -1,7 +1,7 @@
 import {test,expect} from '@playwright/test';
-test('inline hero logo leads to the envelope planner and a transfer enquiry',async({page})=>{
+test('animated header logo leads to the envelope planner and a transfer enquiry',async({page})=>{
  await page.goto('/?lang=en',{waitUntil:'domcontentloaded'});
- await expect(page.locator('#hero-branding')).toBeVisible();
+ await expect(page.locator('#header-branding')).toBeVisible();
  await expect(page.locator('#brand-intro')).toHaveCount(0);
  await expect(page.locator('#welcome-booking')).toBeVisible({timeout:11000});
  await page.locator('#welcome-from').fill('KLIA Terminal 1');
