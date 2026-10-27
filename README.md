@@ -36,7 +36,7 @@ Playwright 默认使用系统 Chromium。其他机器可设置 `CHROMIUM_PATH` �
 - 邮箱：travethru@gmail.com（保留原站拼写）
 - 地址：Lot 302 Pertama Complex, Jalan Tuanku Abdul Rahman, Chow Kit, 50100 Kuala Lumpur, Malaysia
 - `logo.svg`、`logo-mark.png` 与 `cabin-*.webp`、`innova.webp` 来自原官网公开资源。
-- `hero.png`、`covered.png`、`fleet.png` 与 `destinations.png` 为生成的概念展示图片，不作为实际车队年份、配置或可用库存的证明。
+- `hero-bronze.png`、`covered-bronze.png`、`fleet.png` 与 `destinations.png` 为生成的概念展示图片，不作为实际车队年份、配置或可用库存的证明。
 - 四段用户视频仅作为风格与交互参考，没有把参考站的视频、标志或代码嵌入本站。
 
 ## 仍需制作或确认
@@ -64,3 +64,15 @@ Vite 使用相对资源路径，支持部署在 GitHub Pages 的仓库子路径�
 新标签页首次打开时先展示公司名称与原站 Logo，再通过信封展开动画呈现快捷预约面板。可跳过开场、关闭面板、按 Escape 或向下滚动收起；当前标签页不会反复打断用户，页脚的「重播开场 / Replay intro」可重新查看。减少动态效果的系统设置会缩短开场并跳过信封动画。
 
 快捷面板支持点对点接送与按时包车、交换路线、日期/时间、乘客及行李数量。提交会将需求带入主行程表单，不会查询或虚构实时库存/价格，也不会自动创建订单。日期时间按马来西亚出行计划填写。浏览器只在 sessionStorage 中保存开场是否展示的标记，不保存个人行程资料。
+
+## 页脚品牌标识
+
+付款展示包含 TNG eWallet 字标、Stripe、American Express、Visa、Mastercard 与现金；仅展示品牌，不包含支付表单、交易或网关集成。具体付款安排由客服确认。社交区按参考图展示 Instagram、Facebook、YouTube、LinkedIn 与 X，未设置账号链接。
+
+品牌 SVG 来自 Simple Icons（https://simpleicons.org，Amex/Visa 及社交图标来自 npm 16.36.0，LinkedIn 来自 13.21.0）。品牌名称与标志归各自权利人所有；TNG 为文字识别徽标，现金为界面图形。
+
+Stripe 字标来自 Font Awesome Free 7.3.1（https://fontawesome.com，图标 CC BY 4.0），许可文本保留在 public/images/brands/FONT-AWESOME-LICENSE.txt。
+
+手势气流通过装饰 Canvas 响应鼠标移动、原生滚动与手机触控，不拦截点击或滚动。启用系统减少动态效果设置时停用，页面不可见或流线消散后停止绘制。
+
+Hero 与揭幕配对图已依用户参考车辆改为铜色 Alphard 风格（黑色格栅、深色轮毂与低趴包围）。新文件名用于避免旧主图缓存。图像为概念展示，不代表已确认的实际库存。

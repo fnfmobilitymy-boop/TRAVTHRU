@@ -1,4 +1,5 @@
 const copy = {
+'付款方式':'Payment methods','付款方式标识':'Payment method logos','现金':'Cash','具体付款安排，请咨询客服。':'Please confirm payment arrangements with our team.','关注我们':'Follow us','社交平台标识':'Social platform logos',
 '品牌开场':'Brand introduction','跳过开场':'Skip intro','快捷预约面板':'Quick trip planner','你的专属旅程，':'Your private journey. ','现在启程。':'Start here.','关闭预约面板':'Close trip planner','预约类型':'Journey type','点对点接送':'Transfer','按时包车':'Hourly chauffeur','机场、酒店或地址':'Airport, hotel or address','交换出发地与目的地':'Swap pick-up and destination','目的地':'Destination','你想前往哪里？':'Where would you like to go?','包车时长':'Hire duration','2 小时':'2 hours','4 小时':'4 hours','6 小时':'6 hours','8 小时':'8 hours','10 小时':'10 hours','12 小时':'12 hours','出发时间':'Pick-up time','行李数量':'Bags','规划行程':'Plan my ride','灵活行程':'Flexible itineraries','按需报价':'Tailored quotes','向下滑动，继续探索':'SCROLL TO KEEP EXPLORING','重播开场':'Replay intro',
 
 '客运 VAN':'Passenger van','10 座':'10 seats','16 座':'16 seats','VAN 座位配置':'Van seating configuration',

@@ -4,6 +4,7 @@ import '@fontsource/noto-sans-sc/700.css';
 import '@fontsource-variable/archivo/standard.css';
 import {t,isEnglish,initLanguage} from './i18n.js';
 import {initWelcome} from './welcome.js';
+import {initAirflow} from './airflow.js';
 const $ = (s, root=document) => root.querySelector(s);
 const $$ = (s, root=document) => [...root.querySelectorAll(s)];
 const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -93,3 +94,5 @@ document.addEventListener('languagechange',()=>{renderVehicle();closeMenu();if(!
 initLanguage();
 
 initWelcome({onPlan:({service,date,people,message})=>{bookingForm.elements.date.value=date;bookingForm.elements.passengers.value=people;plan(service,message)}});
+
+initAirflow();
