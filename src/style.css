@@ -236,3 +236,5 @@ html:not(.js) .reveal{opacity:1;transform:none}html:not(.js) .hero-sequence{heig
 /* Airport transfers use the supplied real airport photo, distinct from the city tour card. */
 .airport-art{background-image:linear-gradient(0deg,#13211466,transparent),url('/images/journeys/journey-02.webp');background-size:cover;background-position:center 42%}
 .airport-art svg{display:none}
+html[lang] .fleet-number.seat-range{font-size:180px;letter-spacing:-10px;top:90px;left:42%}
+@media(max-width:760px){html[lang] .fleet-number.seat-range{font-size:110px;letter-spacing:-5px;top:auto;left:23%}#booking-form .form-row:has([name=vehicle]){grid-template-columns:1fr}}
