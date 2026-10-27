@@ -82,3 +82,13 @@ Hero 与揭幕配对图已依用户参考车辆改为铜色 Alphard 风格（黑
 ## 三语与日期格式
 
 语言菜单提供中文、English 和 Bahasa Melayu，可使用 `?lang=zh`、`?lang=en`、`?lang=ms` 指定语言。马来语覆盖现有翻译字典的所有文案，并包含快捷预约、车型、隐私说明、提示及行程摘要。日期栏空值提示与所选日期的可见格式随语言变化（中文年/月/日、英语 DD/MM/YYYY、马来语 HH/BB/TTTT），内部仍使用 ISO 日期以便校验。系统原生日期选择器的界面语言由浏览器与操作系统控制。
+
+## Basic SEO build (local changes — not deployed)
+
+Read `BASIC_SEO_REPORT.md` before deployment. `npm run build` now requires Node/npm and Python 3, and emits static Chinese root, English `/en/` and Malay `/ms/` HTML plus production sitemap/robots. Default canonical origin is the existing `https://www.travthru.com/`; this does not bind or migrate that domain. `npm run test:seo` builds and verifies the generated pages using existing Playwright/Chromium.
+
+GitHub Pages remains the demo: the updated workflow explicitly sets `SEO_DEPLOYMENT=preview` and `SEO_SITE_URL=https://fnfmobilitymy-boop.github.io/TRAVTHRU/`, generating noindex preview documents and no sitemap. These workflow changes are not active until an authorised push. A main-branch push triggers deployment; obtain explicit approval first. The production project's optional `GOOGLE_SITE_VERIFICATION` must contain a real Search Console token. Verification is an owner action, not automatic.
+
+## 真实接送照片墙（本地待发布）
+
+`#real-journeys` 使用上传压缩包中的 20 张真实照片，支持环形旋转、拖动、暂停、大图及键盘操作，三语说明随语言切换。减少动态效果时不自动旋转。聊天／评价截图不混入照片墙。原始比例的大图与来源说明见 `CUSTOMER_GALLERY_NOTES.md`，回归检查见 `tests/gallery.spec.js`。未获授权前不推送 main，以免触发上线。

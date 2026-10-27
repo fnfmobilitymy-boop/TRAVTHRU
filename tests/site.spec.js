@@ -29,7 +29,7 @@ test('desktop: continuous scroll, fleet selection and trip consultation',async({
  await page.getByText('可以安排机场接送和多日包车吗？').click();
  await expect(page.locator('details[open]')).toContainText('航班时间');
  await page.locator('#privacy-button').click();
- await expect(page.locator('dialog')).toBeVisible();
+ await expect(page.locator('#info-dialog')).toBeVisible();
  await page.keyboard.press('Escape');
  expect(errors).toEqual([]);
  expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true);
@@ -86,7 +86,7 @@ test('English: translated content, persistent language, enquiry and live updates
  await page.locator('#language-toggle').selectOption('en');await page.reload();
  await expect(page.locator('html')).toHaveAttribute('lang','en');
  await page.goto('/');await expect(page.locator('html')).toHaveAttribute('lang','en');
- const untranslated=await page.evaluate(()=>{const walker=document.createTreeWalker(document.body,NodeFilter.SHOW_TEXT);const out=[];while(walker.nextNode()){const n=walker.currentNode;if(n.parentElement.closest('script,style,#language-toggle,pre'))continue;if(/[\u4e00-\u9fff]/.test(n.textContent)&&n.parentElement.getClientRects().length)out.push(n.textContent.trim())}return out});
+ const untranslated=await page.evaluate(()=>{const walker=document.createTreeWalker(document.body,NodeFilter.SHOW_TEXT);const out=[];while(walker.nextNode()){const n=walker.currentNode;if(n.parentElement.closest('script,style,#language-toggle,.locale-links,pre'))continue;if(/[\u4e00-\u9fff]/.test(n.textContent)&&n.parentElement.getClientRects().length)out.push(n.textContent.trim())}return out});
  expect(untranslated).toEqual([]);
 });
 test('English mobile: menu, destination enquiry and responsive layout',async({page})=>{
@@ -99,5 +99,5 @@ test('English mobile: menu, destination enquiry and responsive layout',async({pa
  await expect(page.locator('[name="service"]')).toHaveValue('定制旅游');
  expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true);
  await page.locator('#privacy-button').click();
- await expect(page.locator('dialog')).toContainText('Your journey. Your privacy.');
+ await expect(page.locator('#info-dialog')).toContainText('Your journey. Your privacy.');
 });

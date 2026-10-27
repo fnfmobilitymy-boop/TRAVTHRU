@@ -1,3 +1,4 @@
+document.documentElement.classList.add('js');
 import '@fontsource/noto-sans-sc/400.css';
 import '@fontsource/noto-sans-sc/500.css';
 import '@fontsource/noto-sans-sc/700.css';
@@ -6,6 +7,7 @@ import {t,isEnglish,isMalay,initLanguage} from './i18n.js';
 import {initWelcome} from './welcome.js';
 import {initAirflow} from './airflow.js';
 import {initDates} from './dates.js';
+import {initGallery} from './gallery.js';
 const $ = (s, root=document) => root.querySelector(s);
 const $$ = (s, root=document) => [...root.querySelectorAll(s)];
 const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -99,3 +101,5 @@ initWelcome({onPlan:({service,date,people,message})=>{bookingForm.elements.date.
 initAirflow();
 
 initDates();
+
+initGallery();

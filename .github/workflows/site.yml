@@ -11,6 +11,9 @@ concurrency:
   cancel-in-progress: true
 jobs:
   validate:
+    permissions:
+      contents: read
+      pages: read
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -20,10 +23,25 @@ jobs:
           cache: npm
       - run: npm ci
       - run: npx playwright install --with-deps chromium
-      - name: Test Chinese and English workflows
+      - name: Test multilingual website workflows
         run: |
           export CHROMIUM_PATH="$(node --input-type=module -e "import {chromium} from '@playwright/test'; console.log(chromium.executablePath())")"
           npm test
+      - name: Choose the configured Pages domain
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          pages_host="$(gh api "repos/${GITHUB_REPOSITORY}/pages" --jq '.cname // empty')"
+          if [ "$pages_host" = "www.travthru.com" ]; then
+            echo 'SEO_DEPLOYMENT=production' >> "$GITHUB_ENV"
+            echo 'SEO_SITE_URL=https://www.travthru.com/' >> "$GITHUB_ENV"
+          elif [ -z "$pages_host" ]; then
+            echo 'SEO_DEPLOYMENT=preview' >> "$GITHUB_ENV"
+            echo 'SEO_SITE_URL=https://fnfmobilitymy-boop.github.io/TRAVTHRU/' >> "$GITHUB_ENV"
+          else
+            echo 'Unexpected Pages domain; review SEO configuration before publishing.' >&2
+            exit 1
+          fi
       - run: npm run build
       - uses: actions/upload-artifact@v4
         with:
