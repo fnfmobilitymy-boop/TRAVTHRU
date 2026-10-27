@@ -1,0 +1,16 @@
+name: Restore temporary GitHub demo URL
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+  pages: write
+jobs:
+  restore:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Clear the Pages custom domain without changing DNS
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          printf '%s\n' '{"cname":null}' > "$RUNNER_TEMP/pages-domain.json"
+          gh api --method PUT "repos/${GITHUB_REPOSITORY}/pages" --input "$RUNNER_TEMP/pages-domain.json" --jq '{cname,html_url}'
