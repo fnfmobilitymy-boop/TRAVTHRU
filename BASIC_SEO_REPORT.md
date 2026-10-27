@@ -197,3 +197,7 @@ Added 20 owner-supplied transfer/travel photos as a translated circular gallery 
 ## Publication authorisation (27 October 2026)
 
 Owner explicitly requested direct publication after reviewing the gallery. GitHub Pages is configured for `www.travthru.com`, but read-only HTTPS checks still returned the legacy website before release. The GitHub demo URL redirected to that custom domain. No DNS change is authorised or performed. Successful Pages publication alone does not prove the customer domain reaches it. Search Console and legacy-URL migration remain owner actions.
+
+## Owner-requested English sharing cards
+
+Sharing metadata (Open Graph/Twitter) is intentionally English in every language version, while SEO titles/descriptions, visible page copy, hreflang and the language selector remain localised. The sharing image is a 1200×630 JPEG of the existing bronze Alphard illustration, about 175 KB, with explicit image MIME type/dimensions and HTTPS URL. Local checks confirm English sharing metadata and image availability; actual WhatsApp cache refresh and the final card layout remain controlled by WhatsApp and are not guaranteed by metadata validation alone.
