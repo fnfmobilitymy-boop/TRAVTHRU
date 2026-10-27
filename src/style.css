@@ -35,3 +35,157 @@
 @media(max-width:760px){html[lang=en] .hero-copy{top:20%;right:5%}html[lang=en] .hero h1{font-size:51px;letter-spacing:-1.5px;margin:23px 0}html[lang=en] .hero-copy>p{font-size:10px;max-width:330px}html[lang=en] .eyebrow{font-size:6px;letter-spacing:1px}html[lang=en] .quick-book{grid-template-columns:1fr 1fr;gap:24px 20px}html[lang=en] .quick-title strong{font-size:22px}html[lang=en] .intro h2,html[lang=en] .section-heading h2{font-size:33px}html[lang=en] .promise-grid{grid-template-columns:1fr;gap:24px}html[lang=en] .promise-grid>div{display:grid;grid-template-columns:35px 1fr;column-gap:13px;padding-top:20px}html[lang=en] .promise-icon{grid-row:1/3;margin:0}html[lang=en] .promise-grid h3{font-size:14px}html[lang=en] .promise-grid p{font-size:10px;margin-top:6px}html[lang=en] .service-overlay h3{font-size:25px}html[lang=en] .fleet-tabs{gap:22px}html[lang=en] .fleet-info p{font-size:9px}html[lang=en] .story-caption h2{font-size:35px}html[lang=en] .story-caption p{font-size:10px}html[lang=en] .section-kicker>span{max-width:130px;white-space:normal;text-align:right;font-size:6px}html[lang=en] .section-kicker{font-size:6px}html[lang=en] .statement h2{font-size:26px}html[lang=en] .booking h2{font-size:38px}html[lang=en] .faq h2{font-size:33px}html[lang=en] .faq summary{font-size:12px;gap:15px}html[lang=en] .footer-top p{font-size:16px}html[lang=en] .nav nav{gap:24px;font-size:15px}html[lang=en] .fleet-note{font-size:8px}}
 
 .van-variants{display:flex;gap:8px;margin-top:13px}.van-variants[hidden]{display:none}.van-variants button{padding:7px 12px;border:1px solid #cbd0c0;background:transparent;color:#7e8871;font-size:10px}.van-variants button.active{background:#34452c;border-color:#34452c;color:#f2f4eb}
+/* Readable type at normal browser zoom, with equal sizing in both languages. */
+html[lang] .nav nav{font-size:14px}
+html[lang] .nav-book,html[lang] .lang{font-size:14px}
+html[lang] .section-kicker,html[lang] .section-kicker>span,html[lang] .mini-label{font-size:12px}
+html[lang] .hero-copy>p,html[lang] .intro-detail p,html[lang] .section-heading>p,html[lang] .promise-grid p,html[lang] .story-caption p{font-size:16px}
+html[lang] .text-link,html[lang] .button{font-size:15px}
+html[lang] .promise-grid h3{font-size:19px}
+html[lang] .service-overlay>span{font-size:11px}
+html[lang] .service-overlay p{font-size:14px}
+html[lang] .quick-book label{font-size:13px}
+html[lang] .quick-book select,html[lang] .quick-book input{font-size:15px}
+html[lang] .quick-book .button{font-size:14px;letter-spacing:0}
+html[lang] .fleet .section-heading h2{font-size:clamp(38px,4vw,60px);line-height:1.25}
+html[lang] .fleet-tabs{gap:32px}
+html[lang] .fleet-tabs button{font-size:16px;padding-bottom:20px}
+html[lang] .fleet-stage{height:540px}
+html[lang] .fleet-info{max-width:38%}
+html[lang] .fleet-info .mini-label{font-size:12px;letter-spacing:1.4px}
+html[lang] .fleet-info h3{font-size:36px;line-height:1.2;letter-spacing:-.8px}
+html[lang] .fleet-info p{font-size:16px;line-height:1.8;max-width:390px;color:#68725e}
+html[lang] .fleet-variants{gap:18px;margin-top:16px}
+html[lang] .fleet-variants button{font-size:13px;padding-bottom:7px}
+html[lang] .van-variants button{font-size:14px;padding:9px 15px}
+html[lang] .fleet-specs{max-width:390px;gap:9px;margin:23px 0 28px}
+html[lang] .fleet-specs span{font-size:13px;line-height:1.5;padding:7px 10px}
+html[lang] .fleet-info .text-link{font-size:16px}
+html[lang] .fleet-controls>span{font-size:13px}
+html[lang] .drag-hint{font-size:12px;letter-spacing:1.2px}
+html[lang] .fleet-note{font-size:13px;line-height:1.9;color:#737d67}
+html[lang] .destination>span{font-size:11px}
+html[lang] .destination h3{font-size:23px}
+html[lang] .booking label{font-size:14px}
+html[lang] .booking input,html[lang] .booking select,html[lang] .booking textarea{font-size:16px}
+html[lang] .booking input::placeholder,html[lang] .booking textarea::placeholder{font-size:14px}
+html[lang] .booking-copy>p{font-size:16px}
+html[lang] .booking-promise{font-size:13px}
+html[lang] .booking .form-note{font-size:12px}
+html[lang] .faq summary{font-size:17px;gap:20px}
+html[lang] .faq details p{font-size:15px}
+html[lang] .contact-grid>div>a{font-size:14px}
+html[lang] .contact-grid>div>a>span,html[lang] .footer-links,html[lang] .footer-links>button{font-size:13px}
+html[lang] .footer-bottom,html[lang] .footer-links>span{font-size:11px}
+html[lang] #form-result pre{font-size:14px;line-height:1.9}
+html[lang] #form-result p{font-size:12px}
+@media(max-width:1100px){
+ html[lang] .nav nav{font-size:12px;gap:15px}
+ html[lang] .nav-book{font-size:12px}
+ html[lang] .fleet-tabs{gap:25px}
+ html[lang] .fleet-tabs button{font-size:14px}
+ html[lang] .fleet-info h3{font-size:31px}
+ html[lang] .fleet-info p{font-size:14px}
+ html[lang] .fleet-specs span{font-size:12px}
+ html[lang] .quick-book select{font-size:13px}
+ html[lang] .quick-book .button{font-size:12px}
+}
+@media(max-width:760px){
+ html[lang] .nav nav{font-size:17px;gap:24px}
+ html[lang] .section-kicker,html[lang] .section-kicker>span{font-size:10px;letter-spacing:.5px}
+ html[lang] .section-kicker>span{max-width:44%;white-space:normal;line-height:1.7}
+ html[lang] .mini-label{font-size:11px}
+ html[lang] .hero-copy>p,html[lang] .intro-detail p,html[lang] .section-heading>p,html[lang] .promise-grid p,html[lang] .story-caption p{font-size:14px}
+ html[lang] .hero-copy>p{letter-spacing:0}
+ html[lang] .promise-grid{grid-template-columns:1fr;gap:24px}
+ html[lang] .promise-grid h3{font-size:18px}
+ html[lang] .promise-grid p{font-size:14px}
+ html[lang] .service-overlay p{font-size:13px}
+ html[lang] .fleet .section-heading h2{font-size:38px;line-height:1.3}
+ html[lang] .fleet-tabs{gap:24px}
+ html[lang] .fleet-tabs button{font-size:14px}
+ html[lang] .fleet-stage{height:auto;min-height:0;display:flex;flex-direction:column;padding-bottom:70px}
+ html[lang] .fleet-info{position:relative;top:auto;left:auto;max-width:100%;width:100%;padding-top:30px}
+ html[lang] .fleet-info h3{font-size:32px}
+ html[lang] .fleet-info p{font-size:15px;line-height:1.8}
+ html[lang] .fleet-specs{max-width:100%;margin:18px 0 23px}
+ html[lang] .fleet-specs span{font-size:12px}
+ html[lang] .fleet-variants button{font-size:13px}
+ html[lang] .fleet-car{position:relative;top:auto;right:auto;width:100%;max-width:none;max-height:none;margin-top:10px;flex-shrink:0}
+ html[lang] .fleet-number{top:auto;bottom:55px;left:20%;font-size:280px}
+ html[lang] .fleet-controls{bottom:0}
+ html[lang] .drag-hint{font-size:10px;bottom:10px;right:0;letter-spacing:.5px}
+ html[lang] .fleet-note{font-size:12px;text-align:left}
+ html[lang] .booking label{font-size:13px}
+ html[lang] .booking input,html[lang] .booking select,html[lang] .booking textarea{font-size:16px}
+ html[lang] .booking input::placeholder,html[lang] .booking textarea::placeholder{font-size:13px}
+ html[lang] .booking-promise{flex-wrap:wrap;font-size:12px;gap:12px}
+ html[lang] .form-row{gap:16px}
+ html[lang] .faq summary{font-size:15px}
+ html[lang] .faq details p{font-size:14px}
+ html[lang] .contact-grid>div>a{font-size:13px}
+ html[lang] .footer-links>span,html[lang] .footer-bottom{font-size:10px}
+ html[lang] .footer-links>a,html[lang] .footer-links>button{font-size:12px}
+ html[lang] .footer-bottom>span:last-child{font-size:9px}
+}
+/* TAHOE reference: wide, heavy geometric sans across the whole site. */
+:root{--site-font:'Archivo Variable','Noto Sans SC',Arial,sans-serif}
+body{font-family:var(--site-font);font-weight:500;font-stretch:105%}
+button,input,select,textarea{font-family:var(--site-font)}
+html[lang] .hero h1,html[lang] .hero h1 .serif,html[lang] .intro h2,html[lang] .section-heading h2,html[lang] .booking h2,html[lang] .booking h2 .italic,html[lang] .faq h2,html[lang] .statement h2,html[lang] .story-caption h2,html[lang] .service-overlay h3,html[lang] .fleet-info h3,html[lang] .quick-title strong,html[lang] .footer-top p,html[lang] .serif,html[lang] .italic{font-family:var(--site-font);font-style:normal;font-weight:900;font-stretch:125%;text-transform:uppercase;letter-spacing:-.025em}
+html[lang] h1,html[lang] h2,html[lang] h3{font-family:var(--site-font);font-weight:850;font-stretch:120%;text-transform:uppercase}
+html[lang] .brand{font-family:var(--site-font);font-weight:900;font-stretch:125%;letter-spacing:2.8px}
+html[lang] .brand small{font-weight:500;font-stretch:100%;letter-spacing:2px}
+html[lang] .hero h1{font-size:clamp(45px,4.6vw,68px);line-height:1.12;max-width:670px;margin:26px 0}
+html[lang=en] .hero-copy{top:25%}
+html[lang] .hero h1 .serif{display:block}
+html[lang] .hero-copy>p{font-weight:500}
+html[lang] .intro h2,html[lang] .section-heading h2,html[lang] .fleet .section-heading h2{font-size:clamp(34px,3.6vw,52px);line-height:1.25}
+html[lang] .section-heading h2{max-width:72%}
+html[lang] .booking h2{font-size:44px;line-height:1.25}
+html[lang] .story-caption h2{font-size:clamp(34px,4vw,58px);line-height:1.25;max-width:950px}
+html[lang] .story-caption{width:82%}
+html[lang] .statement h2{font-size:clamp(25px,3.1vw,42px);line-height:1.45;padding:0 5%}
+html[lang] .service-overlay h3{font-size:23px;line-height:1.3}
+html[lang] .fleet-info h3{font-size:32px;line-height:1.3;overflow-wrap:break-word}
+html[lang] .fleet-number{font-family:var(--site-font);font-weight:900;font-stretch:125%}
+html[lang] .fleet-tabs button,html[lang] .fleet-variants button,html[lang] .van-variants button,html[lang] .nav nav,html[lang] .nav-book,html[lang] .button,html[lang] .text-link{font-weight:700;font-stretch:110%}
+html[lang] .mini-label,html[lang] .section-kicker,html[lang] .service-overlay>span{font-weight:650}
+html[lang] .nav nav{gap:22px;font-size:13px}
+html[lang] .quick-title strong{font-size:21px}
+html[lang] .footer-top p{font-size:17px;max-width:370px;line-height:1.5}
+html[lang] .faq h2{font-size:32px;line-height:1.35}
+html[lang] .destination h3{font-size:21px;font-weight:850;font-stretch:120%}
+html[lang] #form-result pre{font-family:var(--site-font);font-weight:500}
+@media(max-width:1100px) and (min-width:761px){
+ html[lang] .nav nav{font-size:11px;gap:12px}
+ html[lang] .brand{font-size:18px;letter-spacing:2px}
+ html[lang] .nav-book{font-size:11px}
+ html[lang] .nav-end{gap:12px}
+ html[lang] .fleet-info h3{font-size:27px}
+ html[lang] .hero h1{font-size:51px;max-width:570px}
+ html[lang] .service-overlay h3{font-size:19px}
+ html[lang] .quick-title strong{font-size:17px}
+}
+@media(max-width:760px){
+ html[lang] .nav nav{font-size:16px;gap:24px}
+ html[lang] .nav .brand{font-size:16px;letter-spacing:1.5px}
+ html[lang] .brand small{letter-spacing:1.6px}
+ html[lang] .hero-copy{top:20%;right:6%}
+ html[lang] .hero h1{font-size:36px;line-height:1.17;font-stretch:115%;letter-spacing:-1px;max-width:100%;margin:23px 0}
+ html[lang] .hero h1 .serif{font-stretch:115%}
+ html[lang] .hero-copy>p{font-size:13px;line-height:1.9}
+ html[lang] .hero-copy .button{font-size:13px}
+ html[lang] .intro h2,html[lang] .section-heading h2,html[lang] .fleet .section-heading h2{font-size:30px;line-height:1.3;max-width:100%;font-stretch:115%}
+ html[lang] .booking h2{font-size:33px;line-height:1.3}
+ html[lang] .story-caption h2{font-size:29px;font-stretch:110%;line-height:1.3}
+ html[lang] .story-caption{width:86%}
+ html[lang] .statement h2{font-size:23px;font-stretch:110%;padding:0 3%}
+ html[lang] .service-overlay h3{font-size:23px;font-stretch:115%}
+ html[lang] .fleet-info h3{font-size:29px;font-stretch:120%}
+ html[lang] .fleet-tabs button{font-size:14px;font-stretch:100%}
+ html[lang] .quick-title strong{font-size:18px}
+ html[lang] .faq h2{font-size:28px}
+ html[lang] .destination h3{font-size:20px}
+ html[lang] .footer-top p{font-size:15px;max-width:100%}
+}

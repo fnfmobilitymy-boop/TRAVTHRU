@@ -1,6 +1,7 @@
 import '@fontsource/noto-sans-sc/400.css';
 import '@fontsource/noto-sans-sc/500.css';
-import '@fontsource/noto-serif-sc/400.css';
+import '@fontsource/noto-sans-sc/700.css';
+import '@fontsource-variable/archivo/standard.css';
 import {t,isEnglish,initLanguage} from './i18n.js';
 const $ = (s, root=document) => root.querySelector(s);
 const $$ = (s, root=document) => [...root.querySelectorAll(s)];
