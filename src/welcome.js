@@ -1,4 +1,4 @@
-import {isEnglish} from './i18n.js';
+import {isEnglish,isMalay} from './i18n.js';
 export function initWelcome({onPlan}){
  const intro=document.querySelector('#brand-intro'),envelope=document.querySelector('#welcome-envelope'),panel=document.querySelector('#welcome-booking'),form=document.querySelector('#welcome-form');
  const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -26,7 +26,7 @@ export function initWelcome({onPlan}){
  document.querySelector('#swap-route').addEventListener('click',()=>{const from=form.elements.from.value;form.elements.from.value=form.elements.to.value;form.elements.to.value=from});
  const parts=new Intl.DateTimeFormat('en-CA',{timeZone:'Asia/Kuala_Lumpur',year:'numeric',month:'2-digit',day:'2-digit'}).format(new Date(Date.now()+86400000));form.elements.date.value=parts;
  form.addEventListener('submit',e=>{e.preventDefault();if(!form.reportValidity())return;const data=Object.fromEntries(new FormData(form));const service=mode==='hourly'?'按时包车':'点对点接送';
-  const lines=isEnglish()?[`Pick-up: ${data.from.trim()}`,mode==='hourly'?`Hire duration: ${data.hours} hours`:`Destination: ${data.to.trim()}`,`Pick-up time: ${data.time} (Malaysia time)`,`Guests: ${data.people}`,`Bags: ${data.bags}`]:[`出发地点：${data.from.trim()}`,mode==='hourly'?`包车时长：${data.hours} 小时`:`目的地：${data.to.trim()}`,`出发时间：${data.time}（马来西亚时间）`,`同行人数：${data.people}`,`行李数量：${data.bags}`];
+  const lines=isMalay()?[`Lokasi jemputan: ${data.from.trim()}`,mode==='hourly'?`Tempoh sewaan: ${data.hours} jam`:`Destinasi: ${data.to.trim()}`,`Masa jemputan: ${data.time} (waktu Malaysia)`,`Penumpang: ${data.people}`,`Bagasi: ${data.bags}`]:isEnglish()?[`Pick-up: ${data.from.trim()}`,mode==='hourly'?`Hire duration: ${data.hours} hours`:`Destination: ${data.to.trim()}`,`Pick-up time: ${data.time} (Malaysia time)`,`Guests: ${data.people}`,`Bags: ${data.bags}`]:[`出发地点：${data.from.trim()}`,mode==='hourly'?`包车时长：${data.hours} 小时`:`目的地：${data.to.trim()}`,`出发时间：${data.time}（马来西亚时间）`,`同行人数：${data.people}`,`行李数量：${data.bags}`];
   close();onPlan({service,date:data.date,people:data.people,message:lines.join('\n')});
  });
  // Reopening never restores personal input from storage; only the dismissal flag is retained.

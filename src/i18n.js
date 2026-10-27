@@ -1,3 +1,4 @@
+import {ms} from './ms.js';
 const copy = {
 '我们的位置':'Our location','找到我们':'Find us','在 Google Maps 打开':'Open in Google Maps','TRAVTHRU 地址地图':'TRAVTHRU location map','查看路线':'Get directions',
 '付款方式':'Payment methods','付款方式标识':'Payment method logos','现金':'Cash','具体付款安排，请咨询客服。':'Please confirm payment arrangements with our team.','关注我们':'Follow us','社交平台标识':'Social platform logos',
@@ -25,7 +26,7 @@ const copy = {
 };
 let language='zh';
 try { language=new URLSearchParams(location.search).get('lang') || localStorage.getItem('travthru-language') || 'zh'; } catch {}
-if(!['zh','en'].includes(language))language='zh';
+if(!['zh','en','ms'].includes(language))language='zh';
 const records=[];
 const walker=document.createTreeWalker(document.body,NodeFilter.SHOW_TEXT);
 while(walker.nextNode()){const node=walker.currentNode;if(node.parentElement.closest('script,style,pre'))continue;const key=node.textContent.trim();if(copy[key])records.push({node,key,leading:node.textContent.match(/^\s*/)[0],trailing:node.textContent.match(/\s*$/)[0]})}
@@ -33,13 +34,15 @@ const attributes=[];
 document.querySelectorAll('[placeholder],[aria-label],[alt],[title]').forEach(el=>{for(const attr of ['placeholder','aria-label','alt','title']){const key=el.getAttribute(attr);if(copy[key])attributes.push({el,attr,key})}});
 // Values are stable identifiers, independent of the translated option labels.
 document.querySelectorAll('option').forEach(option=>{if(!option.hasAttribute('value'))option.value=option.textContent});
-export const t=key=>language==='en'?(copy[key]||key):key;
+export const t=key=>language==='ms'?(ms[copy[key]||key]||copy[key]||key):language==='en'?(copy[key]||key):key;
+export const isMalay=()=>language==='ms';
+export const getLanguage=()=>language;
 export const isEnglish=()=>language==='en';
-export function applyLanguage(next){language=next==='en'?'en':'zh';document.documentElement.lang=language==='en'?'en':'zh-CN';records.forEach(({node,key,leading,trailing})=>{if(node.isConnected)node.textContent=leading+t(key)+trailing});attributes.forEach(({el,attr,key})=>el.setAttribute(attr,t(key)));
+export function applyLanguage(next){language=['en','ms'].includes(next)?next:'zh';document.documentElement.lang=language==='zh'?'zh-CN':language;records.forEach(({node,key,leading,trailing})=>{if(node.isConnected)node.textContent=leading+t(key)+trailing});attributes.forEach(({el,attr,key})=>el.setAttribute(attr,t(key)));
  document.title=t('TRAVTHRU — 每一程，都值得从容');
- document.querySelector('meta[name="description"]').content=language==='en'?'Private chauffeur services, airport transfers and tailored tours in Malaysia. Explore compact cars, luxury MPVs, vans and coaches with TRAVTHRU.':'TRAVTHRU 马来西亚私人包车、机场接送与定制旅游。从5座轿车到豪华MPV与巴士，找到适合你的旅程。';
- const button=document.querySelector('#language-toggle');button.textContent=language==='en'?'中文':'EN';button.setAttribute('aria-label',language==='en'?'切换到中文':'Switch to English');
+ document.querySelector('meta[name="description"]').content=language==='ms'?'Perkhidmatan pemandu peribadi, pemindahan lapangan terbang dan lawatan tersuai di Malaysia bersama TRAVTHRU.':language==='en'?'Private chauffeur services, airport transfers and tailored tours in Malaysia. Explore compact cars, luxury MPVs, vans and coaches with TRAVTHRU.':'TRAVTHRU 马来西亚私人包车、机场接送与定制旅游。从5座轿车到豪华MPV与巴士，找到适合你的旅程。';
+ document.querySelector('#language-toggle').value=language;
  try{localStorage.setItem('travthru-language',language);const url=new URL(location.href);url.searchParams.set('lang',language);history.replaceState(null,'',url)}catch{}
  document.dispatchEvent(new CustomEvent('languagechange',{detail:language}));
 }
-export function initLanguage(){applyLanguage(language);document.querySelector('#language-toggle').addEventListener('click',()=>applyLanguage(language==='en'?'zh':'en'))}
+export function initLanguage(){applyLanguage(language);document.querySelector('#language-toggle').addEventListener('change',e=>applyLanguage(e.target.value))}

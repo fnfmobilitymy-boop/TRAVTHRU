@@ -78,12 +78,12 @@ test('English: translated content, persistent language, enquiry and live updates
  await expect(page.locator('#trip-summary')).toContainText('Vehicle: 10-seat van');
  await page.locator('[name="passengers"]').fill('6');
  await expect(page.locator('#trip-summary')).toContainText('Travellers: 6');
- await page.locator('#language-toggle').click();
+ await page.locator('#language-toggle').selectOption('zh');
  await expect(page.locator('html')).toHaveAttribute('lang','zh-CN');
  await expect(page.locator('#trip-summary')).toContainText('同行人数：6');
  await expect(page.locator('[name="name"]')).toHaveValue('Alex Tan');
  await expect(page.locator('[name="vehicle"]')).toHaveValue('10 座 VAN');
- await page.locator('#language-toggle').click();await page.reload();
+ await page.locator('#language-toggle').selectOption('en');await page.reload();
  await expect(page.locator('html')).toHaveAttribute('lang','en');
  await page.goto('/');await expect(page.locator('html')).toHaveAttribute('lang','en');
  const untranslated=await page.evaluate(()=>{const walker=document.createTreeWalker(document.body,NodeFilter.SHOW_TEXT);const out=[];while(walker.nextNode()){const n=walker.currentNode;if(n.parentElement.closest('script,style,#language-toggle,pre'))continue;if(/[\u4e00-\u9fff]/.test(n.textContent)&&n.parentElement.getClientRects().length)out.push(n.textContent.trim())}return out});
