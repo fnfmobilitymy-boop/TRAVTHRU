@@ -107,3 +107,32 @@ Approved by the owner after reviewing the first navigation placement:
 - Chinese, English and Malay inspected at 320, 390, 768 and 1440 pixels, with no
   horizontal overflow. Header screenshots: `artifacts/brand-fuller-320.png`,
   `brand-fuller-390.png`, `brand-fuller-768.png`, `brand-fuller-1440.png`.
+
+## Five-second opening with original sound
+
+The owner requested a separate opening of approximately five seconds with sound,
+then explicitly requested that no “Play with sound” button be displayed.
+
+- Added a dismissible, contained welcome animation card using the supplied film.
+  It does not replace the page with a fullscreen loading screen.
+- `public/videos/travthru-opening.mp4` reuses the optimized H.264 video stream and
+  the source file's original AAC audio, copied without regeneration or re-encoding.
+  Duration is approximately 5.04 seconds. Navigation and footer files stay silent.
+- Playback first attempts sound automatically. If the browser blocks audible
+  autoplay, playback falls back to muted and a trusted pointer/key interaction
+  while the opening is visible enables sound. No sound button or permission
+  prompt is displayed. Audible autoplay cannot be guaranteed on every browser.
+- Completion continues to the existing envelope/planner. Skip, Escape or scroll
+  dismisses the opening and immediately stops/unloads audio. Reduced motion
+  skips the opening entirely. It appears once per tab session; a translated
+  footer “Replay intro” action makes it available again without removing the
+  direct “Open trip planner” action.
+- Changed `index.html`, `src/main.js`, `src/welcome.js`, `src/opening.js`,
+  `src/style.css`, translations and the new opening MP4.
+- `tests/opening.spec.js` verifies the five-second duration, no sound button,
+  audible playback after interaction, progression to the planner, scroll/audio
+  dismissal and replay. Full suite: **18 passed (42.8 seconds)**. Production
+  build, JavaScript syntax and three-language SEO checks passed.
+- Desktop and mobile opening inspected locally with no horizontal overflow.
+  Real-device sound output has not been physically checked; media probes confirm
+  an AAC track with nonzero source audio, and Chromium confirms unmuted playback.

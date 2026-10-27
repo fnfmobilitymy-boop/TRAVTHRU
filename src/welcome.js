@@ -1,6 +1,8 @@
+import {initOpening} from './opening.js';
 import {isEnglish,isMalay} from './i18n.js';
-export function initWelcome({onPlan,brandingReady=Promise.resolve()}){
+export function initWelcome({onPlan}){
  const envelope=document.querySelector('#welcome-envelope'),panel=document.querySelector('#welcome-booking'),form=document.querySelector('#welcome-form');
+ const opening=initOpening();
  const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
  const storageKey='travthru-welcome-seen';
  let mode='transfer',generation=0,baseline=0,active=false;
@@ -8,13 +10,14 @@ export function initWelcome({onPlan,brandingReady=Promise.resolve()}){
  function schedule(fn,delay){const id=setTimeout(()=>{timers.delete(id);fn()},delay);timers.add(id)}
  function clearTimers(){timers.forEach(clearTimeout);timers.clear()}
  function remember(){try{sessionStorage.setItem(storageKey,'1')}catch{}}
- function close(){generation++;active=false;clearTimers();remember();envelope.hidden=true;panel.classList.remove('is-visible');panel.hidden=true;document.body.classList.remove('welcome-active');}
- function reveal(){clearTimers();envelope.hidden=false;envelope.classList.remove('is-opening');void envelope.offsetWidth;envelope.classList.add('is-opening');schedule(()=>{if(!active)return;envelope.hidden=true;panel.hidden=false;document.body.classList.add('welcome-active');requestAnimationFrame(()=>panel.classList.add('is-visible'))},reduce?0:800)}
- function start(force=false){let seen=false;try{seen=sessionStorage.getItem(storageKey)==='1'}catch{}if(!force&&(seen||location.hash||scrollY>40))return;
+ function close(){generation++;opening.close();active=false;clearTimers();remember();envelope.hidden=true;panel.classList.remove('is-visible');panel.hidden=true;document.body.classList.remove('welcome-active');}
+ function reveal(){opening.close();clearTimers();envelope.hidden=false;envelope.classList.remove('is-opening');void envelope.offsetWidth;envelope.classList.add('is-opening');schedule(()=>{if(!active)return;envelope.hidden=true;panel.hidden=false;document.body.classList.add('welcome-active');requestAnimationFrame(()=>panel.classList.add('is-visible'))},reduce?0:800)}
+ function start(force=false,withOpening=false){let seen=false;try{seen=sessionStorage.getItem(storageKey)==='1'}catch{}if(!force&&(seen||location.hash||scrollY>40))return;
   close();active=true;baseline=scrollY;panel.hidden=true;panel.classList.remove('is-visible');
   const current=generation;const show=()=>{if(current===generation&&active)reveal()};
-  if(force||reduce)schedule(show,100);else{schedule(show,9000);brandingReady.then(show);}
+  if((force&&!withOpening)||reduce)schedule(show,100);else{schedule(show,12000);opening.play().then(show);}
  }
+ document.querySelector('#replay-opening').addEventListener('click',()=>{window.scrollTo({top:0,behavior:'instant'});start(true,true)});
  document.querySelector('#close-welcome').addEventListener('click',close);
  document.querySelector('#replay-welcome').addEventListener('click',()=>{window.scrollTo({top:0,behavior:'instant'});start(true)});
  document.addEventListener('keydown',e=>{if(active&&e.key==='Escape')close()});

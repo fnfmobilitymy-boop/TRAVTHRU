@@ -2,7 +2,7 @@
 // Keep the supplied final frame visible for reduced motion and media failures.
 export function initBrandVideo(){
  const ready=[...document.querySelectorAll('.brand-video-frame')].map(initVideo);
- // Only header playback affects the existing welcome planner timing.
+ // Keep header completion available without waiting for the deferred footer.
  return ready[0]||Promise.resolve();
 }
 function initVideo(frame){

@@ -1,5 +1,7 @@
 // Bahasa Melayu copy, keyed by the English translation to keep locale coverage auditable.
 export const ms = {
+'Replay intro':'Main semula pengenalan',
+'TRAVTHRU brand animation':'Animasi jenama TRAVTHRU',
 'TRAVTHRU — gold wordmark above a luxury Alphard on black':'TRAVTHRU — logo emas di atas Alphard mewah berlatar hitam',
 'YOUR JOURNEY, OUR PRIORITY.':'PERJALANAN ANDA, KEUTAMAAN KAMI.',
 '6-seat Innova':'Innova 6 tempat duduk','7–10-seat Staria':'Staria 7–10 tempat duduk','Hyundai Staria (7–10 seats)':'Hyundai Staria (7–10 tempat duduk)','Toyota Innova (6 seats)':'Toyota Innova (6 tempat duduk)','Hyundai Staria. Seating options for 7–10.':'Hyundai Staria. Pilihan 7–10 tempat duduk.','Seating configuration to be confirmed':'Konfigurasi tempat duduk akan disahkan',
