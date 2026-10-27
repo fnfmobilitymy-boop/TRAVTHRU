@@ -1,0 +1,47 @@
+import {test,expect} from '@playwright/test';
+test('opening logo leads to the envelope planner and a transfer enquiry',async({page})=>{
+ await page.goto('/?lang=en',{waitUntil:'domcontentloaded'});
+ await expect(page.locator('#brand-intro')).toBeVisible();
+ await expect(page.locator('.intro-brand-name')).toHaveText('TRAVTHRU');
+ await expect(page.locator('#welcome-booking')).toBeVisible({timeout:7000});
+ await page.locator('#welcome-from').fill('KLIA Terminal 1');
+ await page.locator('#welcome-to').fill('KLCC hotel');
+ await page.locator('#swap-route').click();
+ await expect(page.locator('#welcome-from')).toHaveValue('KLCC hotel');
+ await page.locator('#swap-route').click();
+ await page.locator('#welcome-form [name=date]').fill('2027-02-12');
+ await page.locator('#welcome-form [name=time]').fill('11:30');
+ await page.locator('#welcome-form [name=people]').fill('5');
+ await page.locator('#welcome-form [name=bags]').fill('3');
+ await page.locator('.welcome-search').click();
+ await expect(page.locator('#welcome-booking')).toBeHidden();
+ await expect(page.locator('#booking-form [name=service]')).toHaveValue('点对点接送');
+ await expect(page.locator('#booking-form [name=date]')).toHaveValue('2027-02-12');
+ await expect(page.locator('#booking-form [name=passengers]')).toHaveValue('5');
+ await expect(page.locator('#booking-form [name=message]')).toHaveValue(/Pick-up: KLIA Terminal 1\nDestination: KLCC hotel\nPick-up time: 11:30/);
+});
+test('mobile hourly planner can close, stay dismissed and replay',async({page})=>{
+ await page.setViewportSize({width:390,height:844});await page.emulateMedia({reducedMotion:'reduce'});
+ await page.goto('/?lang=zh');
+ await expect(page.locator('#welcome-booking')).toBeVisible();
+ await page.locator('[data-welcome-mode=hourly]').click();
+ await expect(page.locator('#welcome-to')).toBeHidden();
+ await page.locator('#welcome-from').fill('吉隆坡酒店');
+ await page.locator('#welcome-form [name=hours]').selectOption('8');
+ await page.locator('.welcome-search').click();
+ await expect(page.locator('#booking-form [name=service]')).toHaveValue('按时包车');
+ await expect(page.locator('#booking-form [name=message]')).toHaveValue(/包车时长：8 小时/);
+ await page.locator('#replay-welcome').click();
+ await expect(page.locator('#welcome-booking')).toBeVisible();
+ await page.locator('#close-welcome').click();
+ await page.reload();await expect(page.locator('#welcome-booking')).toBeHidden();
+ expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true);
+});
+test('scroll dismisses the welcome planner and does not return on scroll up',async({page})=>{
+ await page.goto('/?lang=en');await expect(page.locator('#welcome-booking')).toBeVisible({timeout:7000});
+ await page.mouse.wheel(0,150);await expect(page.locator('#welcome-booking')).toBeHidden();
+ await page.evaluate(()=>scrollTo({top:0,behavior:'instant'}));await expect(page.locator('#welcome-booking')).toBeHidden();
+ await page.locator('#replay-welcome').click();await expect(page.locator('#brand-intro')).toBeVisible();
+ await page.locator('#skip-intro').click();await expect(page.locator('#welcome-booking')).toBeVisible();
+ await page.keyboard.press('Escape');await expect(page.locator('#welcome-booking')).toBeHidden();
+});

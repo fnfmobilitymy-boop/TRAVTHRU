@@ -3,6 +3,7 @@ import '@fontsource/noto-sans-sc/500.css';
 import '@fontsource/noto-sans-sc/700.css';
 import '@fontsource-variable/archivo/standard.css';
 import {t,isEnglish,initLanguage} from './i18n.js';
+import {initWelcome} from './welcome.js';
 const $ = (s, root=document) => root.querySelector(s);
 const $$ = (s, root=document) => [...root.querySelectorAll(s)];
 const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -90,3 +91,5 @@ addEventListener('scroll',onScroll,{passive:true});addEventListener('resize',onS
 
 document.addEventListener('languagechange',()=>{renderVehicle();closeMenu();if(!$('#form-result').hidden)renderSummary();if(dialog.open)dialog.close()});
 initLanguage();
+
+initWelcome({onPlan:({service,date,people,message})=>{bookingForm.elements.date.value=date;bookingForm.elements.passengers.value=people;plan(service,message)}});

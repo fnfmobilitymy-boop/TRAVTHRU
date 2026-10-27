@@ -18,7 +18,7 @@ test('desktop: continuous scroll, fleet selection and trip consultation',async({
  await expect(page.locator('[name="vehicle"]')).toHaveValue('Toyota Innova');
  await page.locator('[name="name"]').fill('测试旅客');
  await page.locator('[name="email"]').fill('traveller@example.com');
- await page.locator('[name="date"]').fill('2027-01-20');
+ await page.locator('#booking-form [name="date"]').fill('2027-01-20');
  await page.locator('[name="message"]').fill('KLIA 到吉隆坡酒店，2 人，2 件行李。');
  await page.locator('#booking-form button[type="submit"]').click();
  await expect(page.locator('#form-result')).toBeVisible();
@@ -72,7 +72,7 @@ test('English: translated content, persistent language, enquiry and live updates
  await page.locator('#fleet-book').click();
  await page.locator('[name="name"]').fill('Alex Tan');
  await page.locator('[name="email"]').fill('alex@example.com');
- await page.locator('[name="date"]').fill('2027-01-20');
+ await page.locator('#booking-form [name="date"]').fill('2027-01-20');
  await page.locator('[name="message"]').fill('Airport pick-up for 6 guests and 4 bags.');
  await page.locator('#booking-form button[type="submit"]').click();
  await expect(page.locator('#trip-summary')).toContainText('Vehicle: 10-seat van');
