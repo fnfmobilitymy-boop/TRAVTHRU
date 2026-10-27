@@ -1,4 +1,5 @@
 const copy = {
+'客运 VAN':'Passenger van','10 座':'10 seats','16 座':'16 seats','VAN 座位配置':'Van seating configuration',
 'TRAVTHRU — 每一程，都值得从容':'TRAVTHRU — Every journey, beautifully taken care of',
 '出行体验':'The Experience','专属服务':'Our Services','探索车队':'Our Fleet','目的地灵感':'Destinations','规划我的旅程':'Plan your journey',
 '向下滑动，揭开下一程':'SCROLL TO REVEAL YOUR NEXT JOURNEY','为你的下一程，准备就绪':'Ready for your next journey','让出行，成为旅行的一部分':'MAKE THE JOURNEY PART OF YOUR DESTINATION',

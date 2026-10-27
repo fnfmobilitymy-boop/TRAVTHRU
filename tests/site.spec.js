@@ -61,8 +61,14 @@ test('English: translated content, persistent language, enquiry and live updates
  await expect(page.locator('.hero h1')).toContainText('Every journey');
  await expect(page.locator('.nav nav')).toContainText('Our Services');
  await expect(page.locator('[name="name"]')).toHaveAttribute('placeholder','How should we address you?');
- await page.getByRole('tab',{name:'10-seat van',exact:true}).click();
+ await page.getByRole('tab',{name:'Passenger van',exact:true}).click();
  await expect(page.locator('#fleet-seats')).toHaveText('10-seat vehicle');
+ await expect(page.locator('.fleet-tabs [data-seat=van]')).toHaveCount(1);
+ await page.locator('[data-van-seats="16"]').click();
+ await expect(page.locator('#fleet-seats')).toHaveText('16-seat vehicle');
+ await page.locator('#fleet-book').click();
+ await expect(page.locator('[name="vehicle"]')).toHaveValue('16 座 VAN');
+ await page.locator('[data-van-seats="10"]').click();
  await page.locator('#fleet-book').click();
  await page.locator('[name="name"]').fill('Alex Tan');
  await page.locator('[name="email"]').fill('alex@example.com');
