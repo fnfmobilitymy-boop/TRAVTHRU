@@ -218,3 +218,5 @@ html[lang] .welcome-caption h2{font-family:var(--site-font);font-size:32px;font-
 @media(max-width:760px){#language-toggle{max-width:114px;font-size:10px}.nav-end{gap:9px}.nav .brand{gap:7px}.nav .brand small{letter-spacing:1px}html[lang=ms] .hero-copy{top:20%}html[lang=ms] .nav nav{font-size:16px;gap:24px}html[lang=ms] .fleet-tabs button{font-size:13px}.welcome-booking .date-display{font-size:15px}}
 @media(min-width:761px) and (max-width:950px){.nav-book{display:none}.nav-end{gap:10px}#language-toggle{max-width:142px}html[lang] .nav nav{gap:12px;font-size:11px}}
 html[lang] .fleet-tabs{overflow-x:auto;scrollbar-width:none}.welcome-booking label{overflow-wrap:anywhere}
+.footer-registration{display:flex;align-items:baseline;flex-wrap:wrap;gap:8px 15px;padding:0 0 22px;color:#66755a;font-size:13px;line-height:1.8}.footer-registration strong{font-weight:650}.footer-registration>span{font-size:12px;letter-spacing:.5px}
+@media(max-width:760px){.footer-registration{flex-direction:column;gap:3px;padding-bottom:20px;font-size:12px}.footer-registration>span{font-size:11px}}
