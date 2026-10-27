@@ -94,3 +94,5 @@ GitHub Pages remains the demo: the updated workflow explicitly sets `SEO_DEPLOYM
 `#real-journeys` 使用上传压缩包中的 20 张真实照片，支持环形旋转、拖动、暂停、大图及键盘操作，三语说明随语言切换。减少动态效果时不自动旋转。聊天／评价截图不混入照片墙。原始比例的大图与来源说明见 `CUSTOMER_GALLERY_NOTES.md`，回归检查见 `tests/gallery.spec.js`。未获授权前不推送 main，以免触发上线。
 
 车型座位修正：按客户确认，6 座对应 Toyota Innova，7–10 座对应 Hyundai Staria；Alphard/Vellfire 独立展示，座位配置另行确认。车型图片、三语名称、预约选项及行程摘要保持一致。具体可载人数与行李空间预订前确认，不擅自断定座位数是否包含司机。
+
+原 10 座 VAN 入口并入 7–10 座 Hyundai Staria，VAN 单独保留 16 座，以免出现互相矛盾的 10 座车型说明。
