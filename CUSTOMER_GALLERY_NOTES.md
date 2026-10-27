@@ -1,3 +1,5 @@
+> **Publication update — 27 October 2026:** Following explicit owner approval, the three-language site and 20-photo gallery are now published at https://fnfmobilitymy-boop.github.io/TRAVTHRU/ (English `/en/`, Malay `/ms/`). All three URLs returned HTTP 200 without redirecting to the legacy site; served JS/CSS and sample gallery images matched the prepared files. Preview pages use `noindex,follow`. Ten workflow tests and deployment passed in run 40500489730. The owner removed the Pages custom-domain binding; no DNS, billing or Google permissions were changed by the agent. Earlier “local only / not deployed” statements below describe the pre-authorisation audit stage. Production-domain migration and Search Console remain outstanding.
+
 # Customer journey photo gallery
 
 Local implementation only. Not pushed or deployed; existing SEO/social-link changes remain pending approval.
