@@ -287,3 +287,5 @@ body.startup-active{overflow:hidden}
 .airport-art svg{display:none}
 html[lang] .fleet-number.seat-range{font-size:180px;letter-spacing:-10px;top:90px;left:42%}
 @media(max-width:760px){html[lang] .fleet-number.seat-range{font-size:110px;letter-spacing:-5px;top:auto;left:23%}#booking-form .form-row:has([name=vehicle]){grid-template-columns:1fr}}
+
+.payment-badge.wise-badge{background:#9fe870;border-color:#8cd15f;gap:5px;color:#163300}.payment-badge.wise-badge>img{width:18px;height:23px}.wise-badge>b{font-family:Arial,sans-serif;font-size:23px;font-style:italic;font-weight:800;letter-spacing:-1px}
