@@ -289,3 +289,11 @@ html[lang] .fleet-number.seat-range{font-size:180px;letter-spacing:-10px;top:90p
 @media(max-width:760px){html[lang] .fleet-number.seat-range{font-size:110px;letter-spacing:-5px;top:auto;left:23%}#booking-form .form-row:has([name=vehicle]){grid-template-columns:1fr}}
 
 .payment-badge.wise-badge{background:#9fe870;border-color:#8cd15f;gap:5px;color:#163300}.payment-badge.wise-badge>img{width:18px;height:23px}.wise-badge>b{font-family:Arial,sans-serif;font-size:23px;font-style:italic;font-weight:800;letter-spacing:-1px}
+.payment-badge{position:relative;isolation:isolate;transition:transform .3s ease,box-shadow .3s ease,border-color .3s ease}
+.payment-badge::after{content:'';position:absolute;inset:-30% -50%;background:linear-gradient(110deg,transparent 35%,#fff9 49%,transparent 63%);transform:translateX(-130%);opacity:0;pointer-events:none}
+.payment-motion-active .payment-badge{animation:payment-drift 5.5s ease-in-out infinite;animation-delay:calc(var(--payment-index,0) * -.55s)}
+.payment-motion-active .payment-badge::after{animation:payment-shine 9s ease-in-out infinite;animation-delay:calc(var(--payment-index,0) * .35s)}
+@keyframes payment-drift{0%,100%{translate:0 0}50%{translate:0 -3px}}
+@keyframes payment-shine{0%{transform:translateX(-130%);opacity:0}4%{opacity:.65}20%,100%{transform:translateX(130%);opacity:0}}
+@media(hover:hover){.payment-badge:hover{transform:translateY(-3px) scale(1.04);border-color:#c8b184;box-shadow:0 7px 18px #0004}}
+@media(prefers-reduced-motion:reduce){.payment-badge,.payment-badge::after{animation:none!important;transition:none;translate:none;transform:none!important}.payment-badge::after{display:none}}

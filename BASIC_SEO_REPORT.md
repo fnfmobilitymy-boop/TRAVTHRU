@@ -201,3 +201,25 @@ Owner explicitly requested direct publication after reviewing the gallery. GitHu
 ## Owner-requested English sharing cards
 
 Sharing metadata (Open Graph/Twitter) is intentionally English in every language version, while SEO titles/descriptions, visible page copy, hreflang and the language selector remain localised. The sharing image is a 1200×630 JPEG of the existing bronze Alphard illustration, about 175 KB, with explicit image MIME type/dimensions and HTTPS URL. Local checks confirm English sharing metadata and image availability; actual WhatsApp cache refresh and the final card layout remain controlled by WhatsApp and are not guaranteed by metadata validation alone.
+
+## Owner-requested favicon refresh (28 October 2026)
+
+The old search/browser icon is replaced with a static rendition of the owner's
+finished gold TRAVTHRU / Alphard animation, preserving the company name and car.
+A new 96×96 PNG is the declared favicon; it is square and a multiple of 48 pixels.
+A small root `favicon.ico` includes 16/32/48px alternatives; Apple touch and
+manifest icons are supplied at 180, 192 and 512px. The legacy SVG/PNG references
+also use the new artwork, and LocalBusiness.logo now references the new 512px PNG.
+Static localisation preserves icon URLs for all languages and subdirectory builds.
+
+Production build, three-language SEO regression checks and asset requests passed
+locally. The new 96px PNG and Apple icon were requested successfully from rendered
+pages, and the structured-data reference was checked. Full functional suite:
+18 tests passed (27.1 seconds). No new dependencies or Google account actions.
+Actual Google search-result favicon refresh depends on recrawling; no immediate
+Google update or Search Console submission is claimed.
+
+The footer payment badges additionally use subtle staggered movement and a slow
+highlight sweep while visible. Motion stops offscreen, when the tab is hidden,
+and for reduced-motion preferences. Desktop/mobile behaviour and lack of page
+width overflow were verified. Payment methods remain informational badges.

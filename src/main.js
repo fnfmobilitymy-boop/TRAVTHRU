@@ -9,6 +9,7 @@ import {initBrandVideo} from './brand-video.js';
 import {initAirflow} from './airflow.js';
 import {initDates} from './dates.js';
 import {initGallery} from './gallery.js';
+import {initPayments} from './payments.js';
 const $ = (s, root=document) => root.querySelector(s);
 const $$ = (s, root=document) => [...root.querySelectorAll(s)];
 const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -106,3 +107,4 @@ initAirflow();
 initDates();
 
 initGallery();
+initPayments();
