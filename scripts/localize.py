@@ -15,7 +15,7 @@ class Parser(HTMLParser):
   if tag=='html':a['lang']={'zh':'zh-CN','en':'en','ms':'ms'}[lang]
   for k,v in list(a.items()):
    if k in ['alt','title','placeholder','aria-label'] and v:a[k]=tr(v)
-   if k in ['src','href','poster','data-src'] and v and v.startswith(('./favicon.ico','/favicon.ico','./assets/','./videos/','/videos/','./images/','./site.webmanifest','./robots','/images/','/site.webmanifest')):a[k]=root+v.removeprefix('./').lstrip('/')
+   if k in ['src','href','poster','data-src'] and v and v.startswith(('./favicon.ico','/favicon.ico','./favicon.png','/favicon.png','./assets/','./videos/','/videos/','./images/','./site.webmanifest','./robots','/images/','/site.webmanifest')):a[k]=root+v.removeprefix('./').lstrip('/')
   if tag=='option' and a.get('value')=='':a.pop('value');a['data-stable-option']='true'
   out.append('<'+tag+''.join(' '+k+('="'+html.escape(v,quote=True)+'"' if v is not None else '') for k,v in a.items())+'>')
  def handle_startendtag(self,t,a):
