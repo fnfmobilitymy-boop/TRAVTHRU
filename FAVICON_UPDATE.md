@@ -38,14 +38,27 @@ TRAVTHRU / Alphard animation. The existing square artwork in
 - https://www.travthru.com/favicon.png
 - https://www.travthru.com/favicon.ico
 
-Publication uses the repository's existing GitHub Pages workflow; its outcome is
-reported separately at delivery. The icon paths are configured to permit Google
-crawling, but a fresh public-site HTTP/Googlebot fetch could not be completed from
-this workspace: its enforced network allowlist rejects the website hostnames
-(proxy refusal before an origin HTTP response). This is not evidence of the
-website returning 403 or blocking Google. The environment's existing network
-settings draft lists both hostnames but is not active in this runtime.
+The existing GitHub Pages workflow successfully deployed application commit
+`68f41fd` (run `40826687716`). The environment network settings were subsequently
+published by the owner, resolving the earlier workspace-only access restriction.
 
-Do not treat local HTTP success or a successful deployment as an observed Google
-crawl. Actual search-result favicon replacement remains controlled by Google and
-may follow a later recrawl; no immediate refresh or ranking outcome is promised.
+## Live production verification completed — 29 October 2026
+
+- Twelve HTTPS requests passed: homepage, English and Malay pages on both
+  `travthru.com` and `www.travthru.com`, both favicon files on both hosts, and
+  `robots.txt` on both hosts.
+- Every final response was HTTP 200. The `www` URLs redirect once to their matching
+  non-www production URLs. TLS verification remained enabled.
+- Live `favicon.png`: `image/png`, exactly 512 × 512, byte-identical to the official
+  square logo used to generate it. Live ICO: `image/vnd.microsoft.icon`, with the
+  expected 16/32/48/64-pixel entries. Both files match the deployed local assets.
+- All language pages reference `/favicon.png` and `/favicon.ico` correctly; no old
+  SVG favicon declaration remains in their rendered HTML.
+- Public robots content is `User-agent: *` / `Allow: /`, with no icon disallow.
+  Responses had no blocking X-Robots-Tag for these requests.
+- Requests using Googlebot and Googlebot-Image user-agent strings succeeded. This
+  verifies public access and crawl configuration; it does not claim an actual
+  request from Google's crawler infrastructure or a completed Google recrawl.
+
+Actual search-result favicon replacement remains controlled by Google and may
+follow a later recrawl; no immediate refresh or ranking outcome is promised.
