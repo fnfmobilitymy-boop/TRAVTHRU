@@ -1,0 +1,139 @@
+[
+  {
+    "path": "index.html",
+    "url": "https://travthru.com/",
+    "status": 200,
+    "sha256": "e3a906d1098f6be37bb0f3d8e1b7806eb735fa733590fd5df68675cc48eef721",
+    "matches_release_build": true,
+    "x_robots_tag": null,
+    "title": "吉隆坡机场接送与私人包车 | TRAVTHRU",
+    "h1": "每一程，都值得从容。",
+    "canonical": "https://travthru.com/",
+    "hreflang": [
+      {
+        "rel": "alternate",
+        "hreflang": "zh-CN",
+        "href": "https://travthru.com/"
+      },
+      {
+        "rel": "alternate",
+        "hreflang": "en",
+        "href": "https://travthru.com/en/"
+      },
+      {
+        "rel": "alternate",
+        "hreflang": "ms",
+        "href": "https://travthru.com/ms/"
+      },
+      {
+        "rel": "alternate",
+        "hreflang": "x-default",
+        "href": "https://travthru.com/"
+      }
+    ]
+  },
+  {
+    "path": "en/index.html",
+    "url": "https://travthru.com/en/",
+    "status": 200,
+    "sha256": "58cf5d2ddb5eabb4b0e9a064be1791649e97fcf3f9677b74b9e5dd56b86c0d45",
+    "matches_release_build": true,
+    "x_robots_tag": null,
+    "title": "Chauffeur Service KL & Private Driver Malaysia | Travthru",
+    "h1": "Premium Chauffeur Service in Kuala Lumpur",
+    "canonical": "https://travthru.com/en/",
+    "hreflang": [
+      {
+        "rel": "alternate",
+        "hreflang": "zh-CN",
+        "href": "https://travthru.com/"
+      },
+      {
+        "rel": "alternate",
+        "hreflang": "en",
+        "href": "https://travthru.com/en/"
+      },
+      {
+        "rel": "alternate",
+        "hreflang": "ms",
+        "href": "https://travthru.com/ms/"
+      },
+      {
+        "rel": "alternate",
+        "hreflang": "x-default",
+        "href": "https://travthru.com/"
+      }
+    ],
+    "direct_whatsapp_verified": true
+  },
+  {
+    "path": "ms/index.html",
+    "url": "https://travthru.com/ms/",
+    "status": 200,
+    "sha256": "33ef3a7832099d6988c2191cdd546cca4b6ee00fe206d7d93e0b2bd17346bb82",
+    "matches_release_build": true,
+    "x_robots_tag": null,
+    "title": "Pemindahan KLIA & Pemandu Peribadi Kuala Lumpur | TRAVTHRU",
+    "h1": "Setiap perjalanan,dijagadengan teliti.",
+    "canonical": "https://travthru.com/ms/",
+    "hreflang": [
+      {
+        "rel": "alternate",
+        "hreflang": "zh-CN",
+        "href": "https://travthru.com/"
+      },
+      {
+        "rel": "alternate",
+        "hreflang": "en",
+        "href": "https://travthru.com/en/"
+      },
+      {
+        "rel": "alternate",
+        "hreflang": "ms",
+        "href": "https://travthru.com/ms/"
+      },
+      {
+        "rel": "alternate",
+        "hreflang": "x-default",
+        "href": "https://travthru.com/"
+      }
+    ]
+  },
+  {
+    "path": "robots.txt",
+    "url": "https://travthru.com/robots.txt",
+    "status": 200,
+    "sha256": "7c23486810b7fc376f22701ccd95606e450cd11ab22446bbfacb049f87891ef2",
+    "matches_release_build": true,
+    "x_robots_tag": null
+  },
+  {
+    "path": "sitemap.xml",
+    "url": "https://travthru.com/sitemap.xml",
+    "status": 200,
+    "sha256": "d14cace6c16cf18bcb94cb3245cd2517c9ffeeb998141a5f63af10681cb2c3b7",
+    "matches_release_build": true,
+    "x_robots_tag": null
+  },
+  {
+    "path": "assets/index-DWmX8OY5.js",
+    "url": "https://travthru.com/assets/index-DWmX8OY5.js",
+    "status": 200,
+    "sha256": "fd221c74a95624f3d74090d3d7cee05b20e6ffab88f0e3348d63dc06360110e8",
+    "matches_release_build": true,
+    "x_robots_tag": null
+  },
+  {
+    "path": "assets/index-CEsFn3y6.css",
+    "url": "https://travthru.com/assets/index-CEsFn3y6.css",
+    "status": 200,
+    "sha256": "3f0f751b4c8948311eabadfbe7a8cb25afc8821f0273cdc83c442356ca8d19c3",
+    "matches_release_build": true,
+    "x_robots_tag": null
+  },
+  {
+    "www_paths": "/, /en/, /ms/, /sitemap.xml",
+    "redirect": 301,
+    "targets_preserved": true
+  }
+]

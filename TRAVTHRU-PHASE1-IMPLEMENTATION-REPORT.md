@@ -1,6 +1,6 @@
 # Travthru 第一階段 Chauffeur Service SEO 修復交付
 
-日期：2026-11-16（Asia/Kuala_Lumpur）。狀態：工作區實作與預覽，**未推送、未部署正式站**。分支：fix/phase1-chauffeur-20261116。
+日期：2026-11-16（Asia/Kuala_Lumpur）。狀態更新：已獲使用者後續批准並正式部署，發布 commit c92404c；詳見 TRAVTHRU-PHASE1-DEPLOYMENT-REPORT.md。以下測試與方案保留原審核階段紀錄。分支：fix/phase1-chauffeur-20261116。
 
 ## 備份與範圍
 
@@ -115,7 +115,7 @@ npm test
 - Search Console 實際驗證方式／舊 HTML token 尚未取得；不虛構 token，不修改驗證／canonical 設定。
 - 24 小時、活動服務、全國任意路線與舊內容價值仍待核實；不憑關鍵字曝光擴充業務承諾。
 
-## 上線方案（尚未批准）
+## 上線方案（後續已批准並完成，見部署紀錄）
 
 1. 使用者先審核本地預覽、18 項 mapping、完整測試與本次 commit；確認具體內容後明確批准正式部署。
 2. 上線前唯讀確認遠端 main 是否仍為原發布後的 3f6106a；若有他人更新，先比較並保留，不強推／覆寫。
@@ -125,6 +125,6 @@ npm test
 
 ## 回滾方案
 
-目前未部署，正式站不需回滾。預覽需返回舊版時，使用乾淨的獨立 worktree checkout 備份 SHA 後重建，不用 git reset --hard 刪除工作。
+原審核階段未部署；目前已上線，需要回滾時使用部署紀錄中的 c92404c revert 流程。預覽需返回舊版時，使用乾淨的獨立 worktree checkout 備份 SHA 後重建，不用 git reset --hard 刪除工作。
 
 如日後已批准上線且發現回歸，針對**本次實作 commit**做 git revert，保留後續他人修改，重新通過 build／測試後按部署程序發布；不整站回滾到不明舊站、不改主域／網址、不重建已刪失資料。先區分技術回歸與尚未累積足夠樣本的搜尋波動。
