@@ -1,0 +1,12 @@
+[
+  {
+    "url": "https://www.travthru.com/articles",
+    "status": 301,
+    "location": "https://travthru.com/articles"
+  },
+  {
+    "url": "https://travthru.com/articles",
+    "status": 404,
+    "location": null
+  }
+]

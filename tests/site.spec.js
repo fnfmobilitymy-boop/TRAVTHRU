@@ -65,7 +65,7 @@ test('English: translated content, persistent language, enquiry and live updates
  await page.emulateMedia({reducedMotion:'reduce'});
  await page.goto('/?lang=en');
  await expect(page.locator('html')).toHaveAttribute('lang','en');
- await expect(page.locator('.hero h1')).toContainText('Every journey');
+ await expect(page.locator('.hero h1')).toContainText('Premium Chauffeur');
  await expect(page.locator('.nav nav')).toContainText('Our Services');
  await expect(page.locator('[name="name"]')).toHaveAttribute('placeholder','How should we address you?');
  await page.getByRole('tab',{name:'16-seat van',exact:true}).click();

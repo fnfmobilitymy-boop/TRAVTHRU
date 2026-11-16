@@ -297,3 +297,9 @@ html[lang] .fleet-number.seat-range{font-size:180px;letter-spacing:-10px;top:90p
 @keyframes payment-shine{0%{transform:translateX(-130%);opacity:0}4%{opacity:.65}20%,100%{transform:translateX(130%);opacity:0}}
 @media(hover:hover){.payment-badge:hover{transform:translateY(-3px) scale(1.04);border-color:#c8b184;box-shadow:0 7px 18px #0004}}
 @media(prefers-reduced-motion:reduce){.payment-badge,.payment-badge::after{animation:none!important;transition:none;translate:none;transform:none!important}.payment-badge::after{display:none}}
+
+/* Fit the approved English service heading within the existing hero artwork. */
+html[lang=en] .hero h1{font-size:clamp(32px,3.2vw,46px);line-height:1.15}
+html[lang=en] .hero-copy>.hero-brand-line{font-size:16px;font-weight:700;line-height:1.5;margin-bottom:12px}
+html[lang=en] .hero-copy>.hero-whatsapp{display:flex;width:fit-content;max-width:100%;margin-top:14px;color:inherit;font-size:13px;line-height:1.5;letter-spacing:0}
+@media(max-width:760px){html[lang=en] .hero h1{font-size:28px}html[lang=en] .hero-copy>.hero-brand-line{font-size:13px}}

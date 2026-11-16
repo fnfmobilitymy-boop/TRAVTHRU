@@ -1,0 +1,6 @@
+
+> travthru@1.0.0 test:phase1
+> node scripts/check-phase1.mjs
+
+PASS Googlebot UA + no JavaScript: full English heading/copy/direct WhatsApp; all 3 canonical/hreflang sets unchanged
+PASS 3 languages x 4 viewports, hero layout, production-build language hydration and no pageerror

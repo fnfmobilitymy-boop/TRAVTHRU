@@ -1,0 +1,33 @@
+
+> travthru@1.0.0 test
+> playwright test
+
+[WebServer] (node:13727) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 20 tests using 1 worker
+
+(node:13746) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓   1 tests/brand-video.spec.js:3:1 › header logo animation autoplays once and holds its final static frame (8.4s)
+  ✓   2 tests/brand-video.spec.js:19:1 › MP4 remains playable when the WebM source is unavailable (1.5s)
+  ✓   3 tests/brand-video.spec.js:27:1 › footer logo starts only in view and the extra hero video is removed (7.1s)
+  ✓   4 tests/brand-video.spec.js:43:1 › reduced motion uses the final image without requesting any video (1.2s)
+  ✓   5 tests/brand-video.spec.js:56:1 › failed media preserves the logo and leaves booking and navigation working (1.4s)
+  ✓   6 tests/brand-video.spec.js:67:1 › changing to reduced motion stops an active animation (1.4s)
+  ✓   7 tests/gallery.spec.js:2:1 › real journey carousel, full photos and keyboard controls (1.8s)
+  ✓   8 tests/gallery.spec.js:16:1 › mobile horizontal photo drag preserves vertical page scrolling (1.5s)
+  ✓   9 tests/malay.spec.js:2:1 › three languages, Malay enquiry and localized date fields (2.8s)
+  ✓  10 tests/opening.spec.js:3:1 › five-second opening has original audio, no sound button, then reveals the website (6.6s)
+  ✓  11 tests/opening.spec.js:21:1 › scrolling closes opening and stops sound without returning (1.4s)
+  ✓  12 tests/phase1-chauffeur.spec.js:3:1 › approved English content survives language switches without changing Chinese or Malay branding (1.6s)
+  ✓  13 tests/phase1-chauffeur.spec.js:27:1 › direct WhatsApp enquiry works on mobile without completing either planner (1.2s)
+  ✓  14 tests/site.spec.js:2:1 › desktop: continuous scroll, fleet selection and trip consultation (6.3s)
+  ✓  15 tests/site.spec.js:44:1 › mobile: navigation, fleet swipe, booking and reduced motion (1.5s)
+  ✓  16 tests/site.spec.js:64:1 › English: translated content, persistent language, enquiry and live updates (2.8s)
+  ✓  17 tests/site.spec.js:98:1 › English mobile: menu, destination enquiry and responsive layout (1.3s)
+  ✓  18 tests/welcome.spec.js:2:1 › animated header logo leads to the envelope planner and a transfer enquiry (3.1s)
+  ✓  19 tests/welcome.spec.js:25:1 › mobile hourly planner can close, stay dismissed and replay (2.1s)
+  ✓  20 tests/welcome.spec.js:43:1 › scroll dismisses the welcome planner and does not return on scroll up (3.9s)
+
+  20 passed (1.0m)

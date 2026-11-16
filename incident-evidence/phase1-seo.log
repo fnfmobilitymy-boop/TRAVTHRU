@@ -1,0 +1,4 @@
+PASS zh: static metadata, crawlable HTML without JS, schema, assets, anchors, three viewport widths
+PASS en: static metadata, crawlable HTML without JS, schema, assets, anchors, three viewport widths
+PASS ms: static metadata, crawlable HTML without JS, schema, assets, anchors, three viewport widths
+PASS 3 localized pages + live language metadata + sitemap/robots checks

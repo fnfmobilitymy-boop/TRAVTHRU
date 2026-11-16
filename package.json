@@ -8,7 +8,9 @@
     "build": "vite build && node scripts/seo-build.mjs",
     "preview": "vite preview --host 0.0.0.0",
     "test": "playwright test",
-    "test:seo": "npm run build && node scripts/check-seo.mjs"
+    "test:seo": "npm run build && node scripts/check-seo.mjs",
+    "lint": "node scripts/lint.mjs",
+    "test:phase1": "node scripts/check-phase1.mjs"
   },
   "devDependencies": {
     "@playwright/test": "^1.56.1",

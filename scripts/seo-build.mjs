@@ -1,10 +1,18 @@
+import {englishCopy,englishHero} from '../src/english-content.js';
 import fs from 'node:fs';import {spawnSync} from 'node:child_process';import {copy} from '../src/translations.js';import {ms} from '../src/ms.js';import {locales,pageUrl,productionOrigin,businessData,sharing} from '../src/seo.js';
 const base=new URL(process.env.SEO_SITE_URL||productionOrigin+'/');if(base.protocol!=='https:')throw Error('SEO_SITE_URL must use HTTPS');if(!base.pathname.endsWith('/'))base.pathname+='/';
 const preview=process.env.SEO_DEPLOYMENT==='preview';const escape=s=>s.replaceAll('&','&amp;').replaceAll('"','&quot;').replaceAll('<','&lt;');
 const original=fs.readFileSync('dist/index.html','utf8');
 for(const [lang,data] of Object.entries(locales)){
  let html=original.replace(/<title>[^<]*<\/title>/,'').replace(/<meta (?:name="(?:description|twitter:[^"]+)"|property="og:[^"]+")[^>]*>/g,'');
- const translated=spawnSync('python3',['scripts/localize.py'],{input:JSON.stringify({html,lang,copy,ms,basePath:base.pathname}),encoding:'utf8'});if(translated.status!==0)throw Error(translated.stderr);html=translated.stdout;
+ // Keep the hero's city phrase distinct from destination labels during hydration.
+ if(lang==='en')html=html.replace('<span class="serif">从容。</span>','<span class="serif" data-copy-key="从容。">从容。</span>');
+ const translated=spawnSync('python3',['scripts/localize.py'],{input:JSON.stringify({html,lang,copy:lang==='en'?{...copy,...englishCopy}:copy,ms,basePath:base.pathname}),encoding:'utf8'});if(translated.status!==0)throw Error(translated.stderr);html=translated.stdout;
+ if(lang==='en'){
+  html=html.replace('</h1>',`</h1><p class="hero-brand-line">${escape(englishHero.brand)}</p>`);
+  html=html.replace('</a></div><div class="hero-model">',`</a><a class="text-link hero-whatsapp" href="${englishHero.whatsappHref}" target="_blank" rel="noopener noreferrer">${escape(englishHero.whatsappLabel)}</a></div><div class="hero-model">`);
+ }
+
  const tags=[`<title>${escape(data.title)}</title>`,`<meta name="description" content="${escape(data.description)}">`,`<meta name="seo-site-base" content="${escape(base.href)}">`,`<meta name="robots" content="${preview?'noindex,follow':'index,follow'}">`,`<link rel="canonical" href="${pageUrl(lang,base.href)}">`,...Object.entries(locales).map(([l,d])=>`<link rel="alternate" hreflang="${d.tag}" href="${pageUrl(l,base.href)}">`),`<link rel="alternate" hreflang="x-default" href="${base.href}">`,`<meta property="og:type" content="website">`,`<meta property="og:site_name" content="TRAVTHRU">`,`<meta property="og:title" content="${escape(sharing.title)}">`,`<meta property="og:description" content="${escape(sharing.description)}">`,`<meta property="og:url" content="${pageUrl(lang,base.href)}">`,`<meta property="og:locale" content="en_MY">`,`<meta property="og:image" content="${base.href}${sharing.image}">`,`<meta property="og:image:type" content="image/jpeg">`,`<meta property="og:image:secure_url" content="${base.href}${sharing.image}">`,`<meta property="og:image:alt" content="Champagne bronze Toyota Alphard chauffeur vehicle illustration">`,`<meta name="twitter:card" content="summary_large_image">`,`<meta name="twitter:title" content="${escape(sharing.title)}">`,`<meta name="twitter:description" content="${escape(sharing.description)}">`,`<meta name="twitter:image" content="${base.href}${sharing.image}">`,`<script type="application/ld+json">${JSON.stringify(businessData(base.href)).replaceAll('<','\\u003c')}</script>`];
  if(process.env.GOOGLE_SITE_VERIFICATION){if(!/^[A-Za-z0-9_-]+$/.test(process.env.GOOGLE_SITE_VERIFICATION))throw Error('Invalid verification token');tags.push(`<meta name="google-site-verification" content="${process.env.GOOGLE_SITE_VERIFICATION}">`)}
  tags.push(`<link rel="preload" as="image" href="${base.pathname}images/covered-bronze.webp">`,`<meta property="og:image:width" content="1200">`,`<meta property="og:image:height" content="630">`);

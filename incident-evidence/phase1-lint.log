@@ -1,0 +1,5 @@
+
+> travthru@1.0.0 lint
+> node scripts/lint.mjs
+
+PASS syntax lint: 28 JavaScript files, 3 JSON files and Python localizer
